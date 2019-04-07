@@ -1,13 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-    <item
-        android:id="@+id/menu_id_homePage"
-        android:title="Home Page"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_id_gestUscite"
-        android:title="Gestione Uscite"
-        app:showAsAction="never" />
+                        <item
+                            android:id="@+id/menu_id_homePage"
+                            android:orderInCategory="100"
+                            android:title="Home Page"
+                            android:icon="@drawable/home_icon"
+                            app:showAsAction="never" />
+                        <item
+                            android:id="@+id/menu_id_riepilogo"
+                            android:title="Riepilogo"
+                            app:showAsAction="never" />
+                        <item
+                            android:id="@+id/menu_id_gestUscite"
+                            android:title="Gestione Uscite"
+                            app:showAsAction="never" />
+                        <item
+                            android:id="@+id/menu_id_gestEntrate"
+                            android:title="Gestione Entrate"
+                            app:showAsAction="never" />
+                        <item
+                            android:id="@+id/menu_id_gestCategorie"
+                            android:title="Gestione Categorie Spese"
+                            app:showAsAction="never" />
 </menu>

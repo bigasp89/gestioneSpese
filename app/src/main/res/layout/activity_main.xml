@@ -7,11 +7,11 @@
     android:orientation="vertical">
 
     <!-- Load the toolbar here -->
-
     <include
         layout="@layout/custom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <!-- end Load the toolbar -->
 
     <!-- Rest of content for the activity -->
 
