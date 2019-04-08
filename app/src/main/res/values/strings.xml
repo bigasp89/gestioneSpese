@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">provaToolBar</string>
+    <string name="app_name">gestisci le tue spese</string>
     <string name="saldo">Saldo</string>
-    <string name="saldo_value" />
+    <string name="saldo_value"/>
     <string name="uscite">Uscite</string>
     <string name="entrate">Entrate</string>
-    <string name="_30">30$</string>
+    <string name="saldoValue">30$</string>
     <string name="home_page">Home Page</string>
 </resources>
