@@ -7,7 +7,7 @@
         android:id="@+id/gridviewdata"
         android:layout_width="70dp"
         android:layout_height="68dp"
-        android:background="@android:color/background_light"
+        android:background="@drawable/gridview_item_style"
         android:orientation="vertical">
 
         <ImageView

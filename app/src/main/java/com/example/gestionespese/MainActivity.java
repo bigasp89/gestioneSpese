@@ -15,12 +15,17 @@ import android.widget.TextView;
 import com.example.gestionespeses.R;
 import android.widget.GridView;
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
     final String TAG = " Activity = Home page";
     String[] nomeCategoriaSpese = {"Caffè","Casa"};
     int[] iconeCategorieSpese = {R.drawable.coffe_cup,R.drawable.home_icon};
+    TextView tv_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         //End gestione Toolbar//
 
-
+        //gestione Data
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("EEEE-dd-MM-yyyy");
+        String formattedDate = df.format(c.getTime());
+        TextView date  = (TextView) findViewById(R.id.tv_data_title);
+        date.setText(formattedDate);
 
         //Gestione griglia categoria spese///
         //finding listview
@@ -51,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),GridItemActivity.class);
                 intent.putExtra("name",nomeCategoriaSpese[i]);
                 intent.putExtra("image",iconeCategorieSpese[i]);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(),nomeCategoriaSpese[i],Toast.LENGTH_LONG).show();
+
             }
         });
     }
