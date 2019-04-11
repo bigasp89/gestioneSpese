@@ -51,7 +51,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="30 $"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold|italic"
             app:fontFamily="sans-serif"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,6 +73,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/uscite"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="24sp"
             android:textStyle="bold|italic"
             app:fontFamily="@font/cherry_swash"
@@ -95,6 +96,7 @@
             android:layout_marginBottom="116dp"
             android:gravity="center"
             android:text="@string/entrate"
+            android:textColor="@android:color/holo_green_light"
             android:textSize="24sp"
             android:textStyle="bold|italic"
             app:fontFamily="@font/cherry_swash"
@@ -116,6 +118,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="90 $"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="22sp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -136,6 +139,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="120 $"
+            android:textColor="@android:color/holo_green_light"
             android:textSize="22sp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,9 +190,10 @@
             android:verticalSpacing="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578"></GridView>
+            app:layout_constraintVertical_bias="0.708"></GridView>
 
     </android.support.constraint.ConstraintLayout>
     <!-- end Load the toolbar -->

@@ -23,9 +23,23 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
     final String TAG = " Activity = Home page";
-    String[] nomeCategoriaSpese = {"Caffè","Casa"};
-    int[] iconeCategorieSpese = {R.drawable.coffe_cup,R.drawable.home_icon};
-    TextView tv_data;
+
+    //inserimento valori in griglia spese e icone
+    String[] nomeCategoriaSpese = {
+            "Caffè",
+            "Casa",
+            "Giochi",
+            "Gelato",
+            "Telefono",
+            "Carta Regalo"};
+
+
+    int[] iconeCategorieSpese = {R.drawable.coffe_cup,
+            R.drawable.home_icon,
+            R.drawable.joypad,
+            R.drawable.ice_cream,
+            R.drawable.smartphone,
+            R.drawable.gift_card};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         //gestione Data, insert into toll
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("EEEE,dd,MMMM");
+        SimpleDateFormat df = new SimpleDateFormat("EEEE dd MMMM");
         SimpleDateFormat meseAnno = new SimpleDateFormat("MMMM yyyy");
         String giornoNumeroMese = df.format(c.getTime());
         String meseFormattato = meseAnno.format(c.getTime());
@@ -61,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getApplicationContext(),fruitNames[i],Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(getApplicationContext(),GridItemActivity.class);
                 intent.putExtra("name",nomeCategoriaSpese[i]);
                 intent.putExtra("image",iconeCategorieSpese[i]);
-                Toast.makeText(getApplicationContext(),nomeCategoriaSpese[i],Toast.LENGTH_LONG).show();
-
+                startActivity(new Intent(MainActivity.this,Pop.class));//
+                //Toast.makeText(getApplicationContext(),nomeCategoriaSpese[i],Toast.LENGTH_LONG).show();
             }
         });
     }

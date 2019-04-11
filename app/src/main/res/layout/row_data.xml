@@ -8,8 +8,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/gridviewdata"
-        android:layout_width="102dp"
-        android:layout_height="97dp"
+        android:layout_width="103dp"
+        android:layout_height="78dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -20,15 +20,15 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059">
+        app:layout_constraintVertical_bias="0.058">
 
         <ImageView
             android:id="@+id/imagesCategoriaSpese"
-            android:layout_width="45dp"
-            android:layout_height="40dp"
+            android:layout_width="53dp"
+            android:layout_height="46dp"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="8dp"
@@ -47,8 +47,8 @@
 
         <TextView
             android:id="@+id/nomeCategoriaSpese"
-            android:layout_width="66dp"
-            android:layout_height="31dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -57,13 +57,14 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="Caffè"
-            android:textSize="20sp"
-            android:textStyle="normal|bold|italic"
+            android:text="nome"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="8sp"
+            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagesCategoriaSpese"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.204" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

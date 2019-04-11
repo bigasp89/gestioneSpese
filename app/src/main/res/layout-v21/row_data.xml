@@ -1,32 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/gridviewdata"
-        android:layout_width="70dp"
-        android:layout_height="68dp"
+        android:layout_width="53dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/gridview_item_style"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04">
 
         <ImageView
             android:id="@+id/imagesCategoriaSpese"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_width="39dp"
+            android:layout_height="32dp"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/coffe_cup" />
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:src="@drawable/coffe_cup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nomeCategoriaSpese"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_width="47dp"
+            android:layout_height="14dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="33dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
             android:gravity="center"
             android:text="Caffè"
-            android:textSize="20dp"
-            android:textStyle="normal|bold|italic" />
-    </LinearLayout>
-</LinearLayout>
+            android:textSize="12dp"
+            android:textStyle="normal|bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.933" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
