@@ -19,29 +19,30 @@
 
         <TextView
             android:id="@+id/tv_saldo_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="82dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="328dp"
-            android:gravity="center"
+            android:gravity="start|right"
             android:text="@string/saldo"
             android:textSize="24sp"
             android:textStyle="bold|italic"
+            app:fontFamily="@font/cherry_swash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.026" />
 
         <TextView
             android:id="@+id/tv_saldo_value"
-            android:layout_width="47dp"
-            android:layout_height="30dp"
+            android:layout_width="72dp"
+            android:layout_height="32dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -50,19 +51,20 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="30 $"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold|italic"
+            app:fontFamily="sans-serif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.033"
-            app:layout_constraintStart_toEndOf="@+id/tv_saldo_title"
+            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.015" />
+            app:layout_constraintVertical_bias="0.012" />
 
         <TextView
             android:id="@+id/tv_uscite_string"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -73,17 +75,18 @@
             android:text="@string/uscite"
             android:textSize="24sp"
             android:textStyle="bold|italic"
+            app:fontFamily="@font/cherry_swash"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintEnd_toStartOf="@+id/tv_entrate_title"
+            app:layout_constraintHorizontal_bias="0.183"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.124" />
+            app:layout_constraintVertical_bias="0.154" />
 
         <TextView
             android:id="@+id/tv_entrate_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="113dp"
+            android:layout_height="35dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -94,12 +97,13 @@
             android:text="@string/entrate"
             android:textSize="24sp"
             android:textStyle="bold|italic"
+            app:fontFamily="@font/cherry_swash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.809"
+            app:layout_constraintHorizontal_bias="0.865"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintVertical_bias="0.187" />
 
         <TextView
             android:id="@+id/tv_uscite_value"
@@ -116,15 +120,15 @@
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.152"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.252" />
 
         <TextView
             android:id="@+id/tv_entrate_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="29dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -136,32 +140,33 @@
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.785"
+            app:layout_constraintHorizontal_bias="0.808"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.252" />
 
 
         <TextView
             android:id="@+id/tv_data_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="167dp"
+            android:layout_height="29dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="96dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="Data"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold|italic"
+            app:fontFamily="@font/cherry_swash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.944"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.937"
+            app:layout_constraintStart_toEndOf="@+id/tv_saldo_value"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.012"
             tools:text="@tools:sample/date/ddmmyy" />
 
         <GridView
@@ -177,12 +182,13 @@
             android:background="@drawable/gridview_style"
             android:horizontalSpacing="0dp"
             android:numColumns="4"
+            android:scrollbars="vertical"
             android:verticalSpacing="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </GridView>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.578"></GridView>
 
     </android.support.constraint.ConstraintLayout>
     <!-- end Load the toolbar -->

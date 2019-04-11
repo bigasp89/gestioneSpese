@@ -38,16 +38,20 @@ public class MainActivity extends AppCompatActivity {
         // Remove default title text
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Get access to the custom title view
-        TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         //End gestione Toolbar//
 
-        //gestione Data
+        //gestione Data, insert into toll
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("EEEE-dd-MM-yyyy");
-        String formattedDate = df.format(c.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("EEEE,dd,MMMM");
+        SimpleDateFormat meseAnno = new SimpleDateFormat("MMMM yyyy");
+        String giornoNumeroMese = df.format(c.getTime());
+        String meseFormattato = meseAnno.format(c.getTime());
         TextView date  = (TextView) findViewById(R.id.tv_data_title);
-        date.setText(formattedDate);
+        date.setText(giornoNumeroMese);
+        TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitleToolBar.setText(meseFormattato);
 
         //Gestione griglia categoria spese///
         //finding listview
