@@ -88,10 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 //infalte layout
                 View myView = getLayoutInflater().inflate(R.layout.pop_up_layout_inserisci,null);
                 final TextView titoloSpesa = (TextView) myView.findViewById(R.id.titoloCatergoriaPassed);
-
                 ImageView iconaCategoria = (ImageView) myView.findViewById(R.id.iconaSpesa);
-                final EditText editText = (EditText) myView.findViewById(R.id.edit);
-                Button bottone = (Button) myView.findViewById(R.id.bottone);
+                Button bottone = (Button) myView.findViewById(R.id.btn_conferma);
 
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
@@ -101,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 bottone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(!editText.getText().toString().isEmpty()){
-                            Toast.makeText(getApplicationContext(),"inserisci",Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(getApplicationContext(),"Conferma",Toast.LENGTH_LONG).show();
                     }
                 });
 
