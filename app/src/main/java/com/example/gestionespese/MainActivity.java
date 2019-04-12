@@ -1,6 +1,8 @@
 package com.example.gestionespese;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.gestionespeses.R;
@@ -79,8 +83,35 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),GridItemActivity.class);
                 intent.putExtra("name",nomeCategoriaSpese[i]);
                 intent.putExtra("image",iconeCategorieSpese[i]);
-                startActivity(new Intent(MainActivity.this,Pop.class));//
                 //Toast.makeText(getApplicationContext(),nomeCategoriaSpese[i],Toast.LENGTH_LONG).show();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                //infalte layout
+                View myView = getLayoutInflater().inflate(R.layout.pop_up_layout_inserisci,null);
+                final TextView titoloSpesa = (TextView) myView.findViewById(R.id.titoloCatergoriaPassed);
+
+                ImageView iconaCategoria = (ImageView) myView.findViewById(R.id.iconaSpesa);
+                final EditText editText = (EditText) myView.findViewById(R.id.edit);
+                Button bottone = (Button) myView.findViewById(R.id.bottone);
+
+                //settiamo i valori all'interno del popUp
+                //dobbiamo passare, icona titolo
+                titoloSpesa.setText(nomeCategoriaSpese[i]);
+                iconaCategoria.setImageResource(iconeCategorieSpese[i]);
+
+                bottone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!editText.getText().toString().isEmpty()){
+                            Toast.makeText(getApplicationContext(),"inserisci",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                mBuilder.setView(myView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+
             }
         });
     }
