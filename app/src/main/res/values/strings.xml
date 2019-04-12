@@ -6,4 +6,11 @@
     <string name="entrate">Entrate</string>
     <string name="saldoValue">30$</string>
     <string name="home_page">Home Page</string>
+    <string name="annulla_btn">Annulla</string>
+    <string name="nomeCategoria">Nome</string>
+    <string name="btn_conferma">Conferma</string>
+    <string name="currentData">Data</string>
+    <string name="entrateValue">120 $</string>
+    <string name="contenutoSaldo">30 $</string>
+    <string name="usciteValue">90 $</string>
 </resources>
