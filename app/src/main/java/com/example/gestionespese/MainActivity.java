@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.gestionespese.adpter.GridViewSpeseAdapter;
 import com.example.gestionespeses.R;
 import android.widget.GridView;
 import android.widget.AdapterView;
@@ -26,6 +28,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
+    GridView gridViewSpese;
     final String TAG = " Activity = Home page";
 
     //sorgente d dati gridView
@@ -71,26 +74,12 @@ public class MainActivity extends AppCompatActivity {
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText(meseFormattato);
 
-        //Gestione griglia categoria spese///
-        //finding listview
-        gridView = findViewById(R.id.gridview);
-        CustomAdapter customAdapter = new CustomAdapter();
-        gridView.setAdapter(customAdapter);
-//            @Override
-//            public View getView(int i, View view, ViewGroup viewGroup) {
-//                View view1 = getLayoutInflater().inflate(R.layout.row_data,null);
-//                //getting view in row_data
-//                TextView name = view1.findViewById(R.id.nomeCategoriaSpese);
-//                ImageView image = view1.findViewById(R.id.imagesCategoriaSpese);
-//                name.setText(nomeCategoriaSpese[i]);
-//                image.setImageResource(iconeCategorieSpese[i]);
-//                return view1;
-//
-//            }
+        //Gestione Griglia spese
+        gridViewSpese = findViewById(R.id.gridViewSpese);
+        GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategoriaSpese,iconeCategorieSpese);
+        gridViewSpese.setAdapter(gridViewSpeseAdapter);
 
-
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridViewSpese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -101,12 +90,10 @@ public class MainActivity extends AppCompatActivity {
                 ImageView iconaCategoria = (ImageView) myView.findViewById(R.id.iconaSpesa);
                 Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
                 Button bt_annulla = (Button) myView.findViewById(R.id.btn_annulla);
-
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
                 titoloSpesa.setText(nomeCategoriaSpese[i]);
                 iconaCategoria.setImageResource(iconeCategorieSpese[i]);
-
                 bt_conferma.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -124,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 mBuilder.setView(myView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
-
 
             }
         });
@@ -163,40 +149,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-     // END Gestione Menu e sue voci //
-
-    //TODO SPOSTARE IN UNA ALTRA CLASSE
-    //CUSTOM aDAPTER
-    private class CustomAdapter extends BaseAdapter {
-        @Override
-        public int getCount() {
-            return nomeCategoriaSpese.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            View view1 = getLayoutInflater().inflate(R.layout.row_data,null);
-            //getting view in row_data
-            TextView name = view1.findViewById(R.id.nomeCategoriaSpese);
-            ImageView image = view1.findViewById(R.id.imagesCategoriaSpese);
-
-            name.setText(nomeCategoriaSpese[i]);
-            image.setImageResource(iconeCategorieSpese[i]);
-            return view1;
-
-        }
     }
 
 }

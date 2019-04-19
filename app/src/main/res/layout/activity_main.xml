@@ -174,9 +174,9 @@
             tools:text="@tools:sample/date/ddmmyy" />
 
         <GridView
-            android:id="@+id/gridview"
-            android:layout_width="341dp"
-            android:layout_height="237dp"
+            android:id="@+id/gridViewSpese"
+            android:layout_width="308dp"
+            android:layout_height="188dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -190,10 +190,10 @@
             android:verticalSpacing="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.708"></GridView>
+            app:layout_constraintVertical_bias="0.498" />
 
     </android.support.constraint.ConstraintLayout>
     <!-- end Load the toolbar -->

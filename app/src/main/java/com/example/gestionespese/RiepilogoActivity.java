@@ -32,6 +32,12 @@ public class RiepilogoActivity extends AppCompatActivity {
     // Start Gestione Menu e sue voci //
     // Menu icons are inflated just as they were with actionbar
     @Override
+    public void onBackPressed() {
+        Intent goToHomePageActivity = new Intent(this,MainActivity.class);
+        startActivity(goToHomePageActivity);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

@@ -49,11 +49,17 @@ public class GestioneUsciteActivity extends AppCompatActivity {
         GestioneSpeseAdapterRV gestioneSpeseAdapterRV = new GestioneSpeseAdapterRV(getApplicationContext(),nomeCateogriaSpesa,iconCategoriaSpese);
         //collegare arrayAdapter alla listview
         recyclerView.setAdapter(gestioneSpeseAdapterRV);
+
+
     }
 
 
 
-
+    @Override
+    public void onBackPressed() {
+        Intent goToHomePageActivity = new Intent(this,MainActivity.class);
+        startActivity(goToHomePageActivity);
+    }
 
 
 
@@ -91,7 +97,5 @@ public class GestioneUsciteActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

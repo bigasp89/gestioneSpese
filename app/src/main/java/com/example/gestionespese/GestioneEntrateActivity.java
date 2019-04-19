@@ -30,6 +30,12 @@ public class GestioneEntrateActivity extends AppCompatActivity {
         mTitleToolBar.setText("Gestione Entrate");
         //End gestione Toolbar//
     }
+    @Override
+    public void onBackPressed() {
+        Intent goToHomePageActivity = new Intent(this,MainActivity.class);
+        startActivity(goToHomePageActivity);
+    }
+
     // Start Gestione Menu e sue voci //
     // Menu icons are inflated just as they were with actionbar
     @Override
