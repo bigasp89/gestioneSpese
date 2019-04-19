@@ -28,23 +28,23 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     final String TAG = " Activity = Home page";
 
-//    //sorgente d dati gridView
-//    //inserimento valori in griglia spese e icone
-//    String[] nomeCategoriaSpese = {
-//            "Caffè",
-//            "Casa",
-//            "Giochi",
-//            "Gelato",
-//            "Telefono",
-//            "Carta Regalo"};
-//
-//
-//    int[] iconeCategorieSpese = {R.drawable.coffe_cup,
-//            R.drawable.home_icon,
-//            R.drawable.joypad,
-//            R.drawable.ice_cream,
-//            R.drawable.smartphone,
-//            R.drawable.gift_card};
+    //sorgente d dati gridView
+    //inserimento valori in griglia spese e icone
+    String[] nomeCategoriaSpese = {
+            "Caffè",
+            "Casa",
+            "Giochi",
+            "Gelato",
+            "Telefono",
+            "Carta Regalo"};
+
+
+    int[] iconeCategorieSpese = {R.drawable.coffe_cup,
+            R.drawable.home_icon,
+            R.drawable.joypad,
+            R.drawable.ice_cream,
+            R.drawable.smartphone,
+            R.drawable.gift_card};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         // Remove default title text
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Get access to the custom title view
-
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         //End gestione Toolbar//
 
@@ -75,31 +74,25 @@ public class MainActivity extends AppCompatActivity {
         //Gestione griglia categoria spese///
         //finding listview
         gridView = findViewById(R.id.gridview);
-        final CustomAdapter customAdapter = new CustomAdapter() {
-            @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
-                View view1 = getLayoutInflater().inflate(R.layout.row_data,null);
-                //getting view in row_data
-                TextView name = view1.findViewById(R.id.nomeCategoriaSpese);
-                ImageView image = view1.findViewById(R.id.imagesCategoriaSpese);
-
-                name.setText(nomeCategoriaSpese[i]);
-                image.setImageResource(iconeCategorieSpese[i]);
-                return view1;
-
-            }
-        };
+        CustomAdapter customAdapter = new CustomAdapter();
         gridView.setAdapter(customAdapter);
+//            @Override
+//            public View getView(int i, View view, ViewGroup viewGroup) {
+//                View view1 = getLayoutInflater().inflate(R.layout.row_data,null);
+//                //getting view in row_data
+//                TextView name = view1.findViewById(R.id.nomeCategoriaSpese);
+//                ImageView image = view1.findViewById(R.id.imagesCategoriaSpese);
+//                name.setText(nomeCategoriaSpese[i]);
+//                image.setImageResource(iconeCategorieSpese[i]);
+//                return view1;
+//
+//            }
+
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-//                Intent intent = new Intent(getApplicationContext(),GridItemActivity.class);
-////                intent.putExtra("name",nomeCategoriaSpese[i]);
-////                intent.putExtra("image",iconeCategorieSpese[i]);
-                //Toast.makeText(getApplicationContext(),nomeCategoriaSpese[i],Toast.LENGTH_LONG).show();
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                 //infalte layout
@@ -111,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
-                titoloSpesa.setText(customAdapter.nomeCategoriaSpese[i]);
-                iconaCategoria.setImageResource(customAdapter.iconeCategorieSpese[i]);
+                titoloSpesa.setText(nomeCategoriaSpese[i]);
+                iconaCategoria.setImageResource(iconeCategorieSpese[i]);
 
                 bt_conferma.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -149,15 +142,62 @@ public class MainActivity extends AppCompatActivity {
     //metodo che viene invocato quando un Item del menu viene selezionato
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int idVoce =item.getItemId();
-        String nome= (String) item.getTitle();
-
-        Log.i(TAG,"clickVoceMenu "+ nome);
-
+        switch (item.getItemId()){
+            case R.id.menu_id_homePage:
+                Toast.makeText(getApplicationContext(),"Home Page",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.menu_id_gestUscite:
+                Intent goToGestioneUsciteActivity = new Intent(this,GestioneUsciteActivity.class);
+                startActivity(goToGestioneUsciteActivity);
+                break;
+            case R.id.menu_id_gestEntrate:
+                Intent goToGestioneEntrateActivity = new Intent(this,GestioneEntrateActivity.class);
+                startActivity(goToGestioneEntrateActivity);
+                break;
+            case R.id.menu_id_riepilogo:
+                Intent goToRiepilogoActivity = new Intent(this,RiepilogoActivity.class);
+                startActivity(goToRiepilogoActivity);
+                break;
+            case R.id.menu_id_gestCategorie:
+                Toast.makeText(getApplicationContext(),"non hai ancora creato una Activity",Toast.LENGTH_LONG).show();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
      // END Gestione Menu e sue voci //
+
+    //TODO SPOSTARE IN UNA ALTRA CLASSE
+    //CUSTOM aDAPTER
+    private class CustomAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return nomeCategoriaSpese.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View view1 = getLayoutInflater().inflate(R.layout.row_data,null);
+            //getting view in row_data
+            TextView name = view1.findViewById(R.id.nomeCategoriaSpese);
+            ImageView image = view1.findViewById(R.id.imagesCategoriaSpese);
+
+            name.setText(nomeCategoriaSpese[i]);
+            image.setImageResource(iconeCategorieSpese[i]);
+            return view1;
+
+        }
+    }
 
 }
 
