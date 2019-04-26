@@ -1,23 +1,24 @@
 package com.example.gestionespese;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.gestionespese.adpter.GridViewSpeseAdapter;
+import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 import android.widget.GridView;
 import android.widget.AdapterView;
@@ -27,9 +28,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    GridView gridView;
     GridView gridViewSpese;
     final String TAG = " Activity = Home page";
+    DataBaseHelper myDb;
+    EditText importoPredefinito;
 
     //sorgente d dati gridView
     //inserimento valori in griglia spese e icone
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDb = new DataBaseHelper(this);
 
         //Start Gestione ToolBar //
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
@@ -82,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
         gridViewSpese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                 //infalte layout
                 View myView = getLayoutInflater().inflate(R.layout.pop_up_layout_inserisci,null);
+
                 final TextView titoloSpesa = (TextView) myView.findViewById(R.id.titoloCatergoriaPassed);
                 ImageView iconaCategoria = (ImageView) myView.findViewById(R.id.iconaSpesa);
                 Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
@@ -97,7 +100,13 @@ public class MainActivity extends AppCompatActivity {
                 bt_conferma.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"Conferma",Toast.LENGTH_LONG).show();
+                      boolean isInsert =  myDb.insertUscita(titoloSpesa.getText().toString(),30,"ciao gay");
+                        if(isInsert = true){
+                            Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Hai sbagliato qualcosa",Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 

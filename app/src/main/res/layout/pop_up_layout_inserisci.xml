@@ -23,160 +23,74 @@
         android:text="@string/nomeCategoria"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/titoloImporto"
+    <CheckBox
+        android:id="@+id/checkBoxImportoPredefinito"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:text="Inserisci un Importo"
         android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5dp"
+        android:text="Imposta un valore predefinito"
         android:textSize="18sp"
         android:textStyle="bold|italic" />
 
-    <!--Inserimento Manuale Titolo -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            tools:srcCompat="@android:drawable/radiobutton_on_background" />
-
-        <TextView
-            android:id="@+id/inserimentoManualeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="2dp"
-            android:text="Inserimento Manuale"
-            android:textSize="18sp"
-            android:gravity="center"/>
-
-    </LinearLayout>
-
-
-    <!--INSERIMENTO IMPORTO MANUALE-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/titoloCosto"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="2dp"
-            android:text="Importo:"
-            android:textSize="18sp"
-            android:textStyle="bold|italic" />
-
-        <View
-            android:layout_width="10dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="5dp"/>
-
-        <EditText
-            android:id="@+id/et_importoValue"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/background_light"
-            android:gravity="center"
-            android:hint="Inserisci"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-    <!--SELEZONE RAPIDA -->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        tools:srcCompat="@android:drawable/radiobutton_on_background" />
-
-        <TextView
-            android:id="@+id/selezioneRapida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Imposta un'importo predefinito"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <CheckBox
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:text="$" />
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="40dp"
+    <EditText
+        android:id="@+id/et_importoValuePredefinito"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="140dp"
         android:layout_height="30dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="5dp"
+        android:background="@android:color/background_light"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="Imposta"
+        android:inputType="numberDecimal" />
 
-    </View>
+    <!--Inserimento Manuale-->
+    <CheckBox
+        android:id="@+id/checkBoxImportoManuale"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Inserisci un Importo manualmente"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"/>
+
+    <EditText
+        android:id="@+id/et_importoValueManuale"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+        android:hint="Inserisci"
+        android:inputType="numberDecimal" />
+
+
     <!--Descrizione -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/descrizione"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:gravity="start"
-            android:text="Descrizione:"
-            android:textSize="18sp"
-            android:textStyle="bold|italic" />
-
-
-        <View
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp">
-
-        </View>
+    <TextView
+        android:id="@+id/titoloDescrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Inserisci una Descrizione"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
 
         <EditText
             android:id="@+id/descrizioneEdiText"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
+            android:layout_gravity="center"
             android:background="@android:color/background_light"
             android:gravity="center"
             android:hint="Facoltativa" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-
-    </LinearLayout>
 
 
     <!--Bottoni INSERISCI e ANNULLA -->
@@ -185,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="5dp">
-
                 <Button
                     android:id="@+id/btn_annulla"
                     android:layout_width="60dp"
@@ -194,13 +107,11 @@
                     android:background="@android:color/holo_blue_bright"
                     android:text="Annulla"
                     android:textColor="@color/colorPrimaryDark" />
-
                 <View
                     android:layout_width="10dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     />
-
                 <Button
                     android:id="@+id/btn_conferma"
                     android:layout_width="60dp"

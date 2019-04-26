@@ -61,9 +61,6 @@ public class GestioneUsciteActivity extends AppCompatActivity {
         startActivity(goToHomePageActivity);
     }
 
-
-
-
     // Start Gestione Menu e sue voci //
     // Menu icons are inflated just as they were with actionbar
     @Override

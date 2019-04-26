@@ -1,22 +1,32 @@
 package com.example.gestionespese;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestioneEntrateActivity extends AppCompatActivity {
 
+    DataBaseHelper myDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_gestione_entrate);
         //Start Gestione ToolBar //
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
@@ -29,7 +39,28 @@ public class GestioneEntrateActivity extends AppCompatActivity {
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText("Gestione Entrate");
         //End gestione Toolbar//
+        //proviamo a recuprare i dati inseriti su DB giusto per capire come cazzo fare
+        ListView listaprova = (ListView) findViewById(R.id.listaprova);
+        myDb = new DataBaseHelper(this);
+        ArrayList<String> dataList = new ArrayList<>();
+        Cursor data = myDb.getDataFromUsciteTable();
+
+        if(data.getCount()== 0){
+            Toast.makeText(getApplicationContext(),"non ci sono dati in tabella",Toast.LENGTH_LONG).show();
+        }else {
+            while (data.moveToNext()){
+                dataList.add(data.getString(1));
+                ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,dataList);
+                listaprova.setAdapter(listAdapter);
+            }
+        }
+
     }
+
+
+
+
+
     @Override
     public void onBackPressed() {
         Intent goToHomePageActivity = new Intent(this,MainActivity.class);
