@@ -1,7 +1,5 @@
 package com.example.gestionespese;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.gestionespese.adpter.GridViewSpeseAdapter;
 import com.example.gestionespese.database.DataBaseHelper;
@@ -100,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 bt_conferma.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      boolean isInsert =  myDb.insertUscita(titoloSpesa.getText().toString(),30,"ciao gay");
+                      boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),30,"ciao gay");
                         if(isInsert = true){
                             Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
 

@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(" create TABLE IF NOT EXISTS " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL(" create TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NOME_CATEGORIA TEXT,IMPORTO INTEGER,DESCRIZIONE STRING)");
 
     }
@@ -32,7 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertUscita(String nomeCategoria, Integer importo, String descrizione){
+    public boolean insertEntrata(String nomeCategoria, Integer importo, String descrizione){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME_CATEGORIA,nomeCategoria);
@@ -51,5 +51,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String query = "select * from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
+     }
+
+     public boolean deleteRawEntrate(int i){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String table_name = TABLE_NAME;
+        int numeroRigheEliminate =db.delete(table_name,"ID=" + i,null);
+        if(numeroRigheEliminate>0){
+            return true;
+        }else{
+            return false;
+        }
      }
 }
