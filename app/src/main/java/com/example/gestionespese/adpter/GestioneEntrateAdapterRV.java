@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 import java.util.ArrayList;
@@ -75,7 +74,8 @@ public class GestioneEntrateAdapterRV extends RecyclerView.Adapter<GestioneEntra
         holder.infoIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context.getApplicationContext(),"info",Toast.LENGTH_LONG).show();
+                String descrizioneItem =  descrizione.get(position);
+                Toast.makeText(context.getApplicationContext(), descrizioneItem ,Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -73,12 +73,10 @@ public class MainActivity extends AppCompatActivity {
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText(meseFormattato);
 
-
         //Gestione Griglia spese
         gridViewSpese = findViewById(R.id.gridViewSpese);
         GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategoriaSpese,iconeCategorieSpese);
         gridViewSpese.setAdapter(gridViewSpeseAdapter);
-
         gridViewSpese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, final View view, int i, long l) {
@@ -108,13 +106,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             final int importoInserito = Integer.parseInt(importo.getText().toString());
-                            final String descrizioneInsert = descrizione.getText().toString();
+                            String descrizioneInsert = descrizione.getText().toString();
+                            if(descrizioneInsert.isEmpty()){
+                                descrizioneInsert = "nessuna descrizione presente";
+                            }
                             boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert);
                             if(isInsert = true){
                                 Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
-
-                            }else{
-                                Toast.makeText(getApplicationContext(),"Hai sbagliato qualcosa",Toast.LENGTH_LONG).show();
+                                dialog.cancel();
                             }
                         }
 
@@ -124,15 +123,13 @@ public class MainActivity extends AppCompatActivity {
                 bt_annulla.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"Annulla",Toast.LENGTH_LONG).show();
+                        dialog.cancel();
                     }
                 });
-
 
             }
         });
     }
-
 
     // Start Gestione Menu e sue voci //
     // Menu icons are inflated just as they were with actionbar
