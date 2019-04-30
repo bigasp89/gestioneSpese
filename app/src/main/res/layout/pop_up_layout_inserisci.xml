@@ -21,45 +21,24 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/nomeCategoria"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/checkBoxImportoPredefinito"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="5dp"
-        android:text="Imposta un valore predefinito"
-        android:textSize="18sp"
-        android:textStyle="bold|italic" />
-
-    <EditText
-        android:id="@+id/et_importoValuePredefinito"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/background_light"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:hint="Imposta"
-        android:inputType="numberDecimal" />
-
-    <!--Inserimento Manuale-->
-    <CheckBox
-        android:id="@+id/checkBoxImportoManuale"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="Inserisci un Importo manualmente"
-        android:layout_gravity="center"
         android:textSize="18sp"
         android:textStyle="bold|italic"/>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Inserisci un Importo"
+        android:textStyle="bold|italic"
+        android:textSize="18dp"/>
+
+
+
     <EditText
-        android:id="@+id/et_importoValueManuale"
+        android:id="@+id/et_importoInserito"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="140dp"
         android:layout_height="30dp"
@@ -69,6 +48,8 @@
         android:gravity="center"
         android:hint="Inserisci"
         android:inputType="numberDecimal" />
+
+    <!--Inserimento Manuale-->
 
 
     <!--Descrizione -->
@@ -98,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:padding="5dp">
                 <Button
                     android:id="@+id/btn_annulla"

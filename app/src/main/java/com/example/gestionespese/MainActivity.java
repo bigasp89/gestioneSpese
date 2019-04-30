@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     GridView gridViewSpese;
     final String TAG = " Activity = Home page";
     DataBaseHelper myDb;
-    EditText importoPredefinito;
+    EditText importoSpesa;
 
     //sorgente d dati gridView
     //inserimento valori in griglia spese e icone
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText(meseFormattato);
 
+
         //Gestione Griglia spese
         gridViewSpese = findViewById(R.id.gridViewSpese);
         GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategoriaSpese,iconeCategorieSpese);
@@ -80,29 +81,43 @@ public class MainActivity extends AppCompatActivity {
 
         gridViewSpese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, final View view, int i, long l) {
+                //*******************POP_UP INSERIMETO SPESA *********************//
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                 //infalte layout
-                View myView = getLayoutInflater().inflate(R.layout.pop_up_layout_inserisci,null);
-
+                final View myView = getLayoutInflater().inflate(R.layout.pop_up_layout_inserisci,null);
                 final TextView titoloSpesa = (TextView) myView.findViewById(R.id.titoloCatergoriaPassed);
                 ImageView iconaCategoria = (ImageView) myView.findViewById(R.id.iconaSpesa);
-                Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
-                Button bt_annulla = (Button) myView.findViewById(R.id.btn_annulla);
+                final EditText importo = (EditText) myView.findViewById(R.id.et_importoInserito);
+                final EditText descrizione = (EditText) myView.findViewById(R.id.descrizioneEdiText);
+                final Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
+                final Button bt_annulla = (Button) myView.findViewById(R.id.btn_annulla);
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
                 titoloSpesa.setText(nomeCategoriaSpese[i]);
                 iconaCategoria.setImageResource(iconeCategorieSpese[i]);
+                mBuilder.setView(myView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
                 bt_conferma.setOnClickListener(new View.OnClickListener() {
+
                     @Override
                     public void onClick(View view) {
-                      boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),30,"ciao gay");
-                        if(isInsert = true){
-                            Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
-
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Hai sbagliato qualcosa",Toast.LENGTH_LONG).show();
+                        if(importo.getText().toString().isEmpty()){
+                            Toast.makeText(getApplicationContext(),"Inserisci un Importo",Toast.LENGTH_LONG).show();
                         }
+                        else{
+                            final int importoInserito = Integer.parseInt(importo.getText().toString());
+                            final String descrizioneInsert = descrizione.getText().toString();
+                            boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert);
+                            if(isInsert = true){
+                                Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
+
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Hai sbagliato qualcosa",Toast.LENGTH_LONG).show();
+                            }
+                        }
+
                     }
                 });
 
@@ -113,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                mBuilder.setView(myView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
 
             }
         });

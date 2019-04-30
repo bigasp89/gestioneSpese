@@ -4,28 +4,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gestionespese.adpter.GestioneEntrateAdapter;
+import com.example.gestionespese.adpter.GestioneEntrateAdapterRV;
 import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GestioneEntrateActivity extends AppCompatActivity {
-
-    ImageButton cestino;
+    RecyclerView recyclerView;
     DataBaseHelper myDb;
     private ArrayList<String> idEntrata = new ArrayList<String>();
     private ArrayList<String> nomeEntrata = new ArrayList<String>();
@@ -50,10 +45,7 @@ public class GestioneEntrateActivity extends AppCompatActivity {
         //End gestione Toolbar//
         //*****************************//
         //Gestione onclick rimozione riga
-
-
-
-
+        myDb = new DataBaseHelper(this);
     }
 
 
@@ -65,7 +57,10 @@ public class GestioneEntrateActivity extends AppCompatActivity {
     }
 
     private void displayData() {
-        ListView listaEntrate = (ListView) findViewById(R.id.listaprova);
+        recyclerView = (RecyclerView) findViewById(R.id.listaprova);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         Cursor cursor = myDb.getDataFromUsciteTable();
         idEntrata.clear();
         nomeEntrata.clear();
@@ -79,8 +74,9 @@ public class GestioneEntrateActivity extends AppCompatActivity {
                 descrizione.add(cursor.getString(cursor.getColumnIndex("DESCRIZIONE")));
             } while (cursor.moveToNext());
         }
-        GestioneEntrateAdapter gestioneEntrateAdapter = new GestioneEntrateAdapter(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon);
-        listaEntrate.setAdapter(gestioneEntrateAdapter);
+
+        GestioneEntrateAdapterRV gestioneEntrateAdapterRV = new GestioneEntrateAdapterRV(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon);
+        recyclerView.setAdapter(gestioneEntrateAdapterRV);
         //code to set adapter to populate list
         cursor.close();
     }

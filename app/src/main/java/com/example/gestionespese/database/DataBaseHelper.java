@@ -53,10 +53,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor;
      }
 
-     public boolean deleteRawEntrate(int i){
+     public boolean deleteRawEntrate(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String table_name = TABLE_NAME;
-        int numeroRigheEliminate =db.delete(table_name,"ID=" + i,null);
+        int numeroRigheEliminate = db.delete(table_name,"ID=" + id,null);
         if(numeroRigheEliminate>0){
             return true;
         }else{
