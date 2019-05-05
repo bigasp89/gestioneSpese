@@ -26,8 +26,11 @@ public class GestioneEntrateActivity extends AppCompatActivity {
     private ArrayList<String> nomeEntrata = new ArrayList<String>();
     private ArrayList<String> importo = new ArrayList<String>();
     private ArrayList<String> descrizione = new ArrayList<String>();
+    private ArrayList<String> dataEsatta = new ArrayList<String>();
+    private ArrayList<String> oraEsatta = new ArrayList<String>();
     int[] iconaCestino = {R.drawable.cestino};
     int[] infoIcon = {R.drawable.info_icon};
+    int [] iconaEdit = {R.drawable.edit};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,16 +69,20 @@ public class GestioneEntrateActivity extends AppCompatActivity {
         nomeEntrata.clear();
         importo.clear();
         descrizione.clear();
+        dataEsatta.clear();
+        oraEsatta.clear();
         if (cursor.moveToFirst()) {
             do {
                 idEntrata.add(cursor.getString(cursor.getColumnIndex("ID")));
                 nomeEntrata.add(cursor.getString(cursor.getColumnIndex("NOME_CATEGORIA")));
                 importo.add(cursor.getString(cursor.getColumnIndex("IMPORTO")));
                 descrizione.add(cursor.getString(cursor.getColumnIndex("DESCRIZIONE")));
+                dataEsatta.add(cursor.getString(cursor.getColumnIndex("DATA_ESATTA")));
+                oraEsatta.add(cursor.getString(cursor.getColumnIndex("ORA_ESATTA")));
             } while (cursor.moveToNext());
         }
 
-        GestioneEntrateAdapterRV gestioneEntrateAdapterRV = new GestioneEntrateAdapterRV(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon);
+        GestioneEntrateAdapterRV gestioneEntrateAdapterRV = new GestioneEntrateAdapterRV(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon,iconaEdit,dataEsatta,oraEsatta);
         recyclerView.setAdapter(gestioneEntrateAdapterRV);
         //code to set adapter to populate list
         cursor.close();

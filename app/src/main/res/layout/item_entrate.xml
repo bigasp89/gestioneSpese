@@ -6,63 +6,79 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/idEntrata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="id"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/idNome"
-        android:layout_width="wrap_content"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
         android:text="nome"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/idImporto"
-        android:layout_width="wrap_content"
+        android:layout_width="15dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="importo"
-        android:textSize="18sp"
+        android:text="imp"
+        android:textSize="14sp"
         android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/idDescrizione"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="DataOra"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/idDataEsatta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Data"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/idOraEsatta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Ora"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/idInfoImage"
-        android:layout_width="15dp"
-        android:layout_height="35dp"
+        android:layout_width="2dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
         app:srcCompat="@drawable/info_icon" />
 
     <ImageView
+        android:id="@+id/editImage"
+        android:layout_width="2dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageView
         android:id="@+id/cestino"
-        android:layout_width="15dp"
-        android:layout_height="35dp"
+        android:layout_width="2dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"

@@ -1,5 +1,6 @@
 package com.example.gestionespese;
 
+import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridViewSpese;
@@ -66,12 +69,16 @@ public class MainActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("EEEE dd MMMM");
         SimpleDateFormat meseAnno = new SimpleDateFormat("MMMM yyyy");
+        SimpleDateFormat formatoDataPerDb = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatoOraPerDb = new SimpleDateFormat("HH:mm");
         String giornoNumeroMese = df.format(c.getTime());
         String meseFormattato = meseAnno.format(c.getTime());
         TextView date  = (TextView) findViewById(R.id.tv_data_title);
         date.setText(giornoNumeroMese);
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText(meseFormattato);
+        final String dataEsattaDb = formatoDataPerDb.format(c.getTime());
+        final String oraEsattaDb = formatoOraPerDb.format(c.getTime());
 
         //Gestione Griglia spese
         gridViewSpese = findViewById(R.id.gridViewSpese);
@@ -90,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 final EditText descrizione = (EditText) myView.findViewById(R.id.descrizioneEdiText);
                 final Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
                 final Button bt_annulla = (Button) myView.findViewById(R.id.btn_annulla);
+
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
                 titoloSpesa.setText(nomeCategoriaSpese[i]);
@@ -110,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                             if(descrizioneInsert.isEmpty()){
                                 descrizioneInsert = "nessuna descrizione presente";
                             }
-                            boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert);
+                            boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert,dataEsattaDb,oraEsattaDb);
                             if(isInsert = true){
                                 Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
                                 dialog.cancel();

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutModifica"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/titoloCategoriaModify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Nome"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/iconaModifica"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:contentDescription="iconCategory"
+        android:src="@drawable/edit"/>
+
+    <TextView
+        android:id="@+id/titoloModifica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="MODIFICA"
+        android:textSize="12sp"
+        android:textStyle="bold|italic" />
+
+
+    <TextView
+        android:id="@+id/tvImportoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Importo"
+        android:textStyle="bold|italic"
+        android:textSize="18dp"/>
+
+
+
+    <EditText
+        android:id="@+id/et_modificaImporto"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+        android:hint="Inserisci"
+        android:inputType="numberDecimal" />
+
+    <!--Inserimento Manuale-->
+
+
+    <!--Descrizione -->
+    <TextView
+        android:id="@+id/DescModifica"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Descrizione"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:id="@+id/descrizioneEdiText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+        android:hint="Facoltativa" />
+
+
+    <!--Bottoni INSERISCI e ANNULLA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="5dp">
+        <Button
+            android:id="@+id/btn_annullaModifica"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:text="Annulla"
+            android:textColor="@color/colorPrimaryDark" />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btn_modifica"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:text="Modifica"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+</LinearLayout>
