@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.gestionespese.RiepilogoActivity"></activity>
+        <activity android:name="com.example.gestionespese.GestioneSpeseActivity" />
         <activity android:name="com.example.gestionespese.GestioneEntrateActivity" />
-        <activity android:name="com.example.gestionespese.GestioneUsciteActivity" />
         <activity android:name="com.example.gestionespese.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

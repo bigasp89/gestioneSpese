@@ -1,6 +1,5 @@
 package com.example.gestionespese.database;
 
-import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -72,6 +71,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
      }
 
+     public String getDescrizioneFromId(int id) {
+         SQLiteDatabase db = this.getReadableDatabase();
+         String table_name = TABLE_NAME_USCITE;
+         int idValue = id;
+         String selectQuery = "select * from " + table_name + " WHERE ID= " + idValue;
+         Cursor cursor = db.rawQuery(selectQuery, null);
+         cursor.moveToFirst();
+         String descrizioneItem = cursor.getString(cursor.getColumnIndex("DESCRIZIONE"));
+         db.close();
+         return descrizioneItem;
+     }
+
+
+
      public boolean updateDataValue(String id, int importo, String descrizione){
          SQLiteDatabase db = this.getWritableDatabase();
          ContentValues contentValues = new ContentValues();
@@ -79,8 +92,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
          contentValues.put(IMPORTO,importo);
          contentValues.put(DESCRIZIONE,descrizione);
          db.update(TABLE_NAME_USCITE, contentValues,"ID = ?", new String[]{id});
+         db.close();
          return true;
      }
 
+    public int getImportoFromId(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String table_name = TABLE_NAME_USCITE;
+        int idValue = id;
+        String selectQuery = "select * from " + table_name + " WHERE ID= " + idValue;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        int importo = cursor.getInt(cursor.getColumnIndex("IMPORTO"));
+        db.close();
+        return importo;
+    }
 
 }

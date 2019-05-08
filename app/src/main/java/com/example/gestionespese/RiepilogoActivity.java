@@ -52,11 +52,11 @@ public class RiepilogoActivity extends AppCompatActivity {
                 startActivity(goToHomePageActivity);
                 break;
             case R.id.menu_id_gestUscite:
-                Intent goToGestioneUsciteActivity = new Intent(this,GestioneUsciteActivity.class);
-                startActivity(goToGestioneUsciteActivity);
+                Intent goToGestioneSpeseActivity = new Intent(this,GestioneSpeseActivity.class);
+                startActivity(goToGestioneSpeseActivity);
                 break;
             case R.id.menu_id_gestEntrate:
-                Intent goToGestioneEntrateActivity = new Intent(this,GestioneEntrateActivity.class);
+                Intent goToGestioneEntrateActivity = new Intent(this, GestioneEntrateActivity.class);
                 startActivity(goToGestioneEntrateActivity);
                 break;
             case R.id.menu_id_riepilogo:

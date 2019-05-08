@@ -1,6 +1,5 @@
 package com.example.gestionespese;
 
-import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +22,6 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridViewSpese;
@@ -155,11 +152,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Home Page",Toast.LENGTH_LONG).show();
                 break;
             case R.id.menu_id_gestUscite:
-                Intent goToGestioneUsciteActivity = new Intent(this,GestioneUsciteActivity.class);
-                startActivity(goToGestioneUsciteActivity);
+                Intent goToGestioneSpeseActivity = new Intent(this,GestioneSpeseActivity.class);
+                startActivity(goToGestioneSpeseActivity);
                 break;
             case R.id.menu_id_gestEntrate:
-                Intent goToGestioneEntrateActivity = new Intent(this,GestioneEntrateActivity.class);
+                Intent goToGestioneEntrateActivity = new Intent(this, GestioneEntrateActivity.class);
                 startActivity(goToGestioneEntrateActivity);
                 break;
             case R.id.menu_id_riepilogo:

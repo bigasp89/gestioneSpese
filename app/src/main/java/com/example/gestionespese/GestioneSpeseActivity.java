@@ -1,6 +1,7 @@
 package com.example.gestionespese;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,48 +13,80 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gestionespese.adpter.GestioneSpeseAdapterRV;
+import com.example.gestionespese.adpter.GestioneUsciteAdapterRV;
+import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 
-public class GestioneUsciteActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-//    ListView listViewUscite;
+public class GestioneSpeseActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    //sorgente di dati
+    DataBaseHelper myDb;
+    private ArrayList<String> idEntrata = new ArrayList<String>();
+    private ArrayList<String> nomeEntrata = new ArrayList<String>();
+    private ArrayList<String> importo = new ArrayList<String>();
+    private ArrayList<String> descrizione = new ArrayList<String>();
+    private ArrayList<String> dataEsatta = new ArrayList<String>();
+    private ArrayList<String> oraEsatta = new ArrayList<String>();
+    int[] iconaCestino = {R.drawable.cestino};
+    int[] infoIcon = {R.drawable.info_icon};
+    int [] iconaEdit = {R.drawable.edit};
 
-    String[] nomeCateogriaSpesa = {"caffe","gelato"};
-    int [] iconCategoriaSpese = {R.drawable.coffe_cup,R.drawable.ice_cream};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gestione_uscite);
+        setContentView(R.layout.activity_gestione_spese);
         //Start Gestione ToolBar //
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
         setSupportActionBar(toolbar);
         // Remove default title text
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Get access to the custom title view
-
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitleToolBar.setText("Gestione Uscite");
+        mTitleToolBar.setText("Gestione Spese");
         //End gestione Toolbar//
-
-        //gestione lista Uscite
-//        listViewUscite = (ListView) findViewById(R.id.listUscite);
-        recyclerView = (RecyclerView) findViewById(R.id.rvUscite);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        GestioneSpeseAdapterRV gestioneSpeseAdapterRV = new GestioneSpeseAdapterRV(getApplicationContext(),nomeCateogriaSpesa,iconCategoriaSpese);
-        //collegare arrayAdapter alla listview
-        recyclerView.setAdapter(gestioneSpeseAdapterRV);
-
+        //*****************************//
+        //Gestione onclick rimozione riga
+        myDb = new DataBaseHelper(this);
 
     }
 
+    @Override
+    protected void onResume() {
+        myDb = new DataBaseHelper(this);
+        displayData();
+        super.onResume();
+    }
 
+    private void displayData() {
+        recyclerView = (RecyclerView) findViewById(R.id.listaprova);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        Cursor cursor = myDb.getDataFromUsciteTable();
+        idEntrata.clear();
+        nomeEntrata.clear();
+        importo.clear();
+        descrizione.clear();
+        dataEsatta.clear();
+        oraEsatta.clear();
+        if (cursor.moveToFirst()) {
+            do {
+                idEntrata.add(cursor.getString(cursor.getColumnIndex("ID")));
+                nomeEntrata.add(cursor.getString(cursor.getColumnIndex("NOME_CATEGORIA")));
+                importo.add(cursor.getString(cursor.getColumnIndex("IMPORTO")));
+                descrizione.add(cursor.getString(cursor.getColumnIndex("DESCRIZIONE")));
+                dataEsatta.add(cursor.getString(cursor.getColumnIndex("DATA_ESATTA")));
+                oraEsatta.add(cursor.getString(cursor.getColumnIndex("ORA_ESATTA")));
+            } while (cursor.moveToNext());
+        }
+
+        final GestioneUsciteAdapterRV gestioneUsciteAdapterRV = new GestioneUsciteAdapterRV(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon,iconaEdit,dataEsatta,oraEsatta);
+        recyclerView.setAdapter(gestioneUsciteAdapterRV);
+        //code to set adapter to populate list
+        cursor.close();
+    }
 
     @Override
     public void onBackPressed() {
@@ -78,11 +111,11 @@ public class GestioneUsciteActivity extends AppCompatActivity {
                 startActivity(goToHomePageActivity);
                 break;
             case R.id.menu_id_gestUscite:
-                Toast.makeText(getApplicationContext(),"Gestione Uscite",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Gestione Spese",Toast.LENGTH_LONG).show();
                 break;
             case R.id.menu_id_gestEntrate:
-                Intent goToGestioneEntrateActivity = new Intent(this,GestioneEntrateActivity.class);
-                startActivity(goToGestioneEntrateActivity);
+                Intent goToGestioneUsciteActivity = new Intent(this, GestioneEntrateActivity.class);
+                startActivity(goToGestioneUsciteActivity);
                 break;
             case R.id.menu_id_riepilogo:
                 Intent goToRiepilogoActivity = new Intent(this,RiepilogoActivity.class);

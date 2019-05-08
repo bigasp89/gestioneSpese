@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_nome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/titoloRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="RIMUOVI"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/RemoveDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sei sicuro di voler Rimuovere l'oggetto selezionato?"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"/>
+
+
+    <!--Bottoni INSERISCI e ANNULLA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="5dp">
+        <Button
+            android:id="@+id/btn_annullaRemove"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:text="Annulla"
+            android:textColor="@color/colorPrimaryDark" />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/btn_remove"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:text="Rimuovi"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+</LinearLayout>

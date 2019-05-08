@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gestionespese.GestioneEntrateActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.gestionespese.GestioneEntrateActivity">
     <!-- Load the toolbar here -->
     <include
         layout="@layout/custom_layout"
@@ -13,9 +13,8 @@
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listaprova"
+        android:id="@+id/rvUscite"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </LinearLayout>
