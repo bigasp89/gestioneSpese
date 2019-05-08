@@ -34,7 +34,6 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
     public GestioneUsciteAdapterRV(Context context, ArrayList<String> idEntrata, ArrayList<String> nomeEntrata,
                                    ArrayList<String> importo, ArrayList<String> descrizione, int[] iconaCestino,
                                    int [] infoIcon, int[] iconaEdit, ArrayList<String> dataEsatta, ArrayList<String> oraEsatta) {
-
         this.context = context;
         this.idEntrata = idEntrata;
         this.nomeEntrata = nomeEntrata;
@@ -59,7 +58,6 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-//        holder.idEntrata.setText(idEntrata.get(position));
         holder.nomeEntrata.setText(nomeEntrata.get(position));
         holder.importo.setText(importo.get(position));
         holder.dataEsatta.setText(dataEsatta.get(position));
@@ -68,6 +66,7 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
         holder.infoIcon.setImageResource(R.drawable.info_icon);
         holder.iconaEdit.setImageResource(R.drawable.edit);
 
+        //DELETE ITEM
         holder.iconaCestino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +105,8 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                 });
             }
         });
+
+        //DESCRIZIONE ITEM
         holder.infoIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +121,10 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                 EditDialogBuilder.setView(myView);
                 final AlertDialog dialog = EditDialogBuilder.create();
                 dialog.show();
-//                Toast.makeText(context.getApplicationContext(), descrizione ,Toast.LENGTH_LONG).show();
             }
         });
 
+        //MODIFICA ITEM
         holder.iconaEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,15 +189,11 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
 
 
     }
-
-
     @Override
     public int getItemCount() {
         return idEntrata.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView idEntrata;
         TextView nomeEntrata;
         TextView importo;
         TextView dataEsatta;
@@ -208,7 +205,6 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
 
         public MyViewHolder(View itemView) {
             super(itemView);
-//            idEntrata = (TextView) itemView.findViewById(R.id.idEntrata);
             nomeEntrata = (TextView) itemView.findViewById(R.id.idNome);
             importo = (TextView) itemView.findViewById(R.id.idImporto);
             dataEsatta = (TextView) itemView.findViewById(R.id.idDataValue);

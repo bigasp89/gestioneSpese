@@ -44,7 +44,7 @@ public class GestioneSpeseActivity extends AppCompatActivity {
         // Get access to the custom title view
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitleToolBar.setText("Gestione Spese");
+        mTitleToolBar.setText("Gestione Uscite");
         //End gestione Toolbar//
         //*****************************//
         //Gestione onclick rimozione riga
