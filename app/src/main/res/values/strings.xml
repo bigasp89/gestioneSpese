@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">gestisci le tue spese</string>
+    <string name="app_name">Gestione Spese</string>
     <string name="saldo">Saldo</string>
     <string name="saldo_value" />
     <string name="uscite">Uscite</string>

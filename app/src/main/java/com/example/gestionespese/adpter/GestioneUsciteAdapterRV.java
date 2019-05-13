@@ -67,44 +67,63 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
         holder.iconaEdit.setImageResource(R.drawable.edit);
 
         //DELETE ITEM
+
+
         holder.iconaCestino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                AlertDialog.Builder EditDialogBuilder = new AlertDialog.Builder(view.getRootView().getContext());
-                final View myView = inflater.inflate(R.layout.pop_up_layout_delete,null);
-                final Button btn_remove = (Button) myView.findViewById(R.id.btn_remove);
-                final Button btn_annullaModifica = (Button) myView.findViewById(R.id.btn_annullaRemove);
-                EditDialogBuilder.setView(myView);
-                final AlertDialog dialog = EditDialogBuilder.create();
-                dialog.show();
-                btn_annullaModifica.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-                btn_remove.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                    myDb = new DataBaseHelper(context.getApplicationContext());
-                    int id = Integer.parseInt(idEntrata.get(position));
-                        boolean removeItem = myDb.deleteRawEntrate(id);
-                        if(removeItem){
-                            Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();
-                            idEntrata.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position,getItemCount());
-                        }
-                        else{
-                            Toast.makeText(context.getApplicationContext(),"ops!!! qualcosa è andato storto",Toast.LENGTH_LONG).show();
-                        }
-                        dialog.cancel();
-                    }
-                });
+                myDb = new DataBaseHelper(context.getApplicationContext());
+                int id = Integer.parseInt(idEntrata.get(position));
+                boolean removeItem = myDb.deleteRawEntrate(id);
+                if(removeItem){
+                    Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();
+//                    idEntrata.remove(position);
+//                    notifyItemRemoved(position);
+//                    notifyItemRangeChanged(position,getItemCount());
+                }
+                else{
+                    Toast.makeText(context.getApplicationContext(),"errore",Toast.LENGTH_LONG).show();
+                }
             }
         });
+//        holder.iconaCestino.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                AlertDialog.Builder EditDialogBuilder = new AlertDialog.Builder(view.getRootView().getContext());
+//                final View myView = inflater.inflate(R.layout.pop_up_layout_delete,null);
+//                final Button btn_remove = (Button) myView.findViewById(R.id.btn_remove);
+//                final Button btn_annullaModifica = (Button) myView.findViewById(R.id.btn_annullaRemove);
+//                EditDialogBuilder.setView(myView);
+//                final AlertDialog dialog = EditDialogBuilder.create();
+//                dialog.show();
+//                btn_annullaModifica.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                btn_remove.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                    myDb = new DataBaseHelper(context.getApplicationContext());
+//                    int id = Integer.parseInt(idEntrata.get(position));
+//                        boolean removeItem = myDb.deleteRawEntrate(id);
+//                        if(removeItem){
+//                            idEntrata.remove(position);
+//                            notifyItemRemoved(position);
+//                            notifyItemRangeChanged(position,getItemCount());
+//                        }
+//                        else{
+//                            Toast.makeText(context.getApplicationContext(),"ops!!! qualcosa è andato storto",Toast.LENGTH_LONG).show();
+//                        }
+//                        dialog.cancel();
+//                    }
+//
+//                });
+//            }
+//        });
 
         //DESCRIZIONE ITEM
         holder.infoIcon.setOnClickListener(new View.OnClickListener() {

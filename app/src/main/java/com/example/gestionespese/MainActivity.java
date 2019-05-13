@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.home_page_layout);
         myDb = new DataBaseHelper(this);
 
         //Start Gestione ToolBar //
@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
         //gestione Data, insert into toll
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("EEEE dd MMMM");
+        SimpleDateFormat df = new SimpleDateFormat("EEEE dd");
         SimpleDateFormat meseAnno = new SimpleDateFormat("MMMM yyyy");
         SimpleDateFormat formatoDataPerDb = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatoOraPerDb = new SimpleDateFormat("HH:mm");
         String giornoNumeroMese = df.format(c.getTime());
         String meseFormattato = meseAnno.format(c.getTime());
-        TextView date  = (TextView) findViewById(R.id.tv_data_title);
+        TextView date  = (TextView) findViewById(R.id.giorno_corrente);
         date.setText(giornoNumeroMese);
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitleToolBar.setText(meseFormattato);
@@ -170,5 +170,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
 
