@@ -76,8 +76,11 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                 int id = Integer.parseInt(idEntrata.get(position));
                 boolean removeItem = myDb.deleteRawEntrate(id);
                 if(removeItem){
+                    //todo fixare bug rimozione
                     Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();
-//                    idEntrata.remove(position);
+                    importo.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,idEntrata.size());
 //                    notifyItemRemoved(position);
 //                    notifyItemRangeChanged(position,getItemCount());
                 }
@@ -111,7 +114,7 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
 //                    int id = Integer.parseInt(idEntrata.get(position));
 //                        boolean removeItem = myDb.deleteRawEntrate(id);
 //                        if(removeItem){
-//                            idEntrata.remove(position);
+//                            importo.remove(position);
 //                            notifyItemRemoved(position);
 //                            notifyItemRangeChanged(position,getItemCount());
 //                        }
@@ -208,6 +211,8 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
 
 
     }
+
+
     @Override
     public int getItemCount() {
         return idEntrata.size();

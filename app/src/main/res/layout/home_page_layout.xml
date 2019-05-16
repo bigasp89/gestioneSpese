@@ -109,31 +109,21 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
 
                 <TextView
                     android:id="@+id/tv_entrate_value_home_page"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="10000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/tv_euro_image_entrate"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="0dp"
-                    android:gravity="center"
-                    android:text="€"
-                    android:textSize="17sp"
-                    app:fontFamily="@font/cherry_swash" />
             </LinearLayout>
-
         </LinearLayout>
 
         <View
@@ -164,29 +154,18 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tv_uscite_value_home_page"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="10000"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/tv_euro_image_uscite"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="0dp"
-                    android:gravity="center"
-                    android:text="€"
-                    android:textSize="17sp"
-                    app:fontFamily="@font/cherry_swash" />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

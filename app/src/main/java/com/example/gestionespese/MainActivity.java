@@ -20,6 +20,8 @@ import android.widget.GridView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -77,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
         final String dataEsattaDb = formatoDataPerDb.format(c.getTime());
         final String oraEsattaDb = formatoOraPerDb.format(c.getTime());
 
+        //gestione importi
+        int totUscite = myDb.getImportoTotaleSpese();
+        TextView importoUscite = (TextView) findViewById(R.id.tv_uscite_value_home_page);
+        importoUscite.setText(Integer.toString(totUscite)+"€");
+
+
+
         //Gestione Griglia spese
         gridViewSpese = findViewById(R.id.gridViewSpese);
         GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategoriaSpese,iconeCategorieSpese);
@@ -118,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
                             boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert,dataEsattaDb,oraEsattaDb);
                             if(isInsert = true){
                                 Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
+                                int totUscite = myDb.getImportoTotaleSpese();
+                                TextView importoUscite = (TextView) findViewById(R.id.tv_uscite_value_home_page);
+                                importoUscite.setText(Integer.toString(totUscite)+"€");
                                 dialog.cancel();
                             }
                         }
@@ -173,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+
+    @Override
+    protected void onResume() {
+        myDb = new DataBaseHelper(this);
+
+        super.onResume();
     }
 }
 
