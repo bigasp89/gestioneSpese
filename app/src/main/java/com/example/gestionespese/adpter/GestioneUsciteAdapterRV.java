@@ -74,7 +74,7 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
             public void onClick(View view) {
                 myDb = new DataBaseHelper(context.getApplicationContext());
                 int id = Integer.parseInt(idEntrata.get(position));
-                boolean removeItem = myDb.deleteRawEntrate(id);
+                boolean removeItem = myDb.deleteRawUscite(id);
                 if(removeItem){
                     //todo fixare bug rimozione
                     Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();

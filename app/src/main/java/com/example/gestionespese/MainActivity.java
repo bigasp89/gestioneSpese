@@ -176,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToRiepilogoActivity);
                 break;
             case R.id.menu_id_gestCategorie:
-                Toast.makeText(getApplicationContext(),"non hai ancora creato una Activity",Toast.LENGTH_LONG).show();
+                Intent goToGestCategorieActivity = new Intent(this,GestioneCategoryActivity.class);
+                startActivity(goToGestCategorieActivity);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -187,12 +188,5 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-
-    @Override
-    protected void onResume() {
-        myDb = new DataBaseHelper(this);
-
-        super.onResume();
-    }
 }
 

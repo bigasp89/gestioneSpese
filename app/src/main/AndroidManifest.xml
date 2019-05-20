@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gestionespeses">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_app_t_rex_square"
@@ -8,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_app_t_rex_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.gestionespese.RiepilogoActivity"></activity>
+        <activity android:name="com.example.gestionespese.GestioneCategoryActivity"></activity>
+        <activity android:name="com.example.gestionespese.RiepilogoActivity" />
         <activity android:name="com.example.gestionespese.GestioneSpeseActivity" />
         <activity android:name="com.example.gestionespese.GestioneEntrateActivity" />
         <activity android:name="com.example.gestionespese.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,4 +25,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

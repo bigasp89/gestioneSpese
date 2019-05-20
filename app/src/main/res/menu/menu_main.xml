@@ -22,4 +22,5 @@
                             android:id="@+id/menu_id_gestCategorie"
                             android:title="Gestione Categorie Spese"
                             app:showAsAction="never" />
+
 </menu>

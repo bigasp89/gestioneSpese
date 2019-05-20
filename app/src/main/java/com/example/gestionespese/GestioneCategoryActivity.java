@@ -13,29 +13,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gestionespese.adpter.GestioneUsciteAdapterRV;
+import com.example.gestionespese.adpter.GestioneCategoryAdapterRV;
 import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 
 import java.util.ArrayList;
 
-public class GestioneSpeseActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
+public class GestioneCategoryActivity extends AppCompatActivity {
     DataBaseHelper myDb;
-    private ArrayList<String> idEntrata = new ArrayList<String>();
-    private ArrayList<String> nomeEntrata = new ArrayList<String>();
-    private ArrayList<String> importo = new ArrayList<String>();
-    private ArrayList<String> descrizione = new ArrayList<String>();
-    private ArrayList<String> dataEsatta = new ArrayList<String>();
-    private ArrayList<String> oraEsatta = new ArrayList<String>();
+    RecyclerView recyclerView;
+    private ArrayList<String> idCategory = new ArrayList<String>();
+    private ArrayList<String> nomeCategory = new ArrayList<String>();
+    private ArrayList<String> flagCategory = new ArrayList<String>();
     int[] iconaCestino = {R.drawable.cestino};
-    int[] infoIcon = {R.drawable.info_icon};
-    int [] iconaEdit = {R.drawable.edit};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gestione_spese);
+        setContentView(R.layout.activity_gestione_category);
+        myDb = new DataBaseHelper(this);
+
         //Start Gestione ToolBar //
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
         setSupportActionBar(toolbar);
@@ -44,46 +41,36 @@ public class GestioneSpeseActivity extends AppCompatActivity {
         // Get access to the custom title view
         ImageView logoToolBar = (ImageView) toolbar.findViewById(R.id.toolbar_t_rex_icon);
         TextView mTitleToolBar = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitleToolBar.setText("Gestione Uscite");
+        mTitleToolBar.setText("Gestione Categorie");
         //End gestione Toolbar//
-        //*****************************//
-        //Gestione onclick rimozione riga
-        myDb = new DataBaseHelper(this);
 
     }
+
 
     @Override
     protected void onResume() {
         myDb = new DataBaseHelper(this);
-        displayData();
+        displayCategoryPersonali();
         super.onResume();
     }
 
-    private void displayData() {
-        recyclerView = (RecyclerView) findViewById(R.id.listaSpese);
+    private void displayCategoryPersonali() {
+        recyclerView = (RecyclerView) findViewById(R.id.listaCategorie);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        Cursor cursor = myDb.getDataFromUsciteTable();
-        idEntrata.clear();
-        nomeEntrata.clear();
-        importo.clear();
-        descrizione.clear();
-        dataEsatta.clear();
-        oraEsatta.clear();
+        Cursor cursor = myDb.getCategoryFromCategorieTable();
+        idCategory.clear();
+        nomeCategory.clear();
+        flagCategory.clear();
         if (cursor.moveToFirst()) {
             do {
-                idEntrata.add(cursor.getString(cursor.getColumnIndex("ID")));
-                nomeEntrata.add(cursor.getString(cursor.getColumnIndex("NOME_CATEGORIA")));
-                importo.add(cursor.getString(cursor.getColumnIndex("IMPORTO")));
-                descrizione.add(cursor.getString(cursor.getColumnIndex("DESCRIZIONE")));
-                dataEsatta.add(cursor.getString(cursor.getColumnIndex("DATA_ESATTA")));
-                oraEsatta.add(cursor.getString(cursor.getColumnIndex("ORA_ESATTA")));
+                idCategory.add(cursor.getString(cursor.getColumnIndex("ID_CAT")));
+                nomeCategory.add(cursor.getString(cursor.getColumnIndex("NOME")));
+                flagCategory.add(cursor.getString(cursor.getColumnIndex("FLAG_SELEZIONE_RAPIDA")));
             } while (cursor.moveToNext());
         }
-
-        final GestioneUsciteAdapterRV gestioneUsciteAdapterRV = new GestioneUsciteAdapterRV(getApplicationContext(),idEntrata, nomeEntrata,importo,descrizione,iconaCestino,infoIcon,iconaEdit,dataEsatta,oraEsatta);
-        recyclerView.setAdapter(gestioneUsciteAdapterRV);
+        final GestioneCategoryAdapterRV gestioneCategotyAdapterRV = new GestioneCategoryAdapterRV(getApplicationContext(),idCategory, nomeCategory,flagCategory,iconaCestino);
+        recyclerView.setAdapter(gestioneCategotyAdapterRV);
         //code to set adapter to populate list
         cursor.close();
     }
@@ -94,8 +81,6 @@ public class GestioneSpeseActivity extends AppCompatActivity {
         startActivity(goToHomePageActivity);
     }
 
-    // Start Gestione Menu e sue voci //
-    // Menu icons are inflated just as they were with actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -107,26 +92,24 @@ public class GestioneSpeseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_id_homePage:
-                Intent goToHomePageActivity = new Intent(this,MainActivity.class);
-                startActivity(goToHomePageActivity);
+                Toast.makeText(getApplicationContext(),"Home Page",Toast.LENGTH_LONG).show();
                 break;
             case R.id.menu_id_gestUscite:
-                Toast.makeText(getApplicationContext(),"Gestione Spese",Toast.LENGTH_LONG).show();
+                Intent goToGestioneSpeseActivity = new Intent(this,GestioneSpeseActivity.class);
+                startActivity(goToGestioneSpeseActivity);
                 break;
             case R.id.menu_id_gestEntrate:
-                Intent goToGestioneUsciteActivity = new Intent(this, GestioneEntrateActivity.class);
-                startActivity(goToGestioneUsciteActivity);
+                Intent goToGestioneEntrateActivity = new Intent(this, GestioneEntrateActivity.class);
+                startActivity(goToGestioneEntrateActivity);
                 break;
             case R.id.menu_id_riepilogo:
                 Intent goToRiepilogoActivity = new Intent(this,RiepilogoActivity.class);
                 startActivity(goToRiepilogoActivity);
                 break;
             case R.id.menu_id_gestCategorie:
-                Intent goToGestCategorieActivity = new Intent(this,GestioneCategoryActivity.class);
-                startActivity(goToGestCategorieActivity);
+                Toast.makeText(getApplicationContext(),"Gestione Cateogorie",Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
