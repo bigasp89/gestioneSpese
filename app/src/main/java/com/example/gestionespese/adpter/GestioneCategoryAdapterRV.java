@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,6 +51,12 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
         holder.idCategory.setText(idCategory.get(position));
         holder.nomeCategory.setText(nomeCategory.get(position));
         holder.flagCategory.setText(flagCategory.get(position));
+        if(holder.flagCategory.getText().equals("Y")){
+            holder.selectionState.setChecked(true);
+        }
+        else{
+            holder.selectionState.setChecked(false);
+        }
         holder.iconaCestino.setImageResource(R.drawable.cestino);
     }
 
@@ -66,6 +73,7 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
         TextView nomeCategory;
         TextView flagCategory;
         ImageView iconaCestino;
+        public CheckBox selectionState;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -73,6 +81,7 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
             nomeCategory = (TextView) itemView.findViewById(R.id.tv_id_nomeCateogry);
             flagCategory = (TextView) itemView.findViewById(R.id.tv_id_flgCategory);
             iconaCestino = (ImageView) itemView.findViewById(R.id.cestinoCategory);
+            selectionState = (CheckBox) itemView.findViewById(R.id.brand_select);
         }
     }
 

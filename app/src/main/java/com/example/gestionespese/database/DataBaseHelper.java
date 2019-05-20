@@ -25,7 +25,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static String FLAG_SELEZIONE_RAPIDA = "FLAG_SELEZIONE_RAPIDA";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 9);
+        super(context, DATABASE_NAME, null, 10);
     }
 
     @Override
@@ -43,6 +43,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Aereo', 'Y')");
         db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Vacanze', 'Y')");
         db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Regalo', 'Y')");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Dildo', 'N')");
     }
 
     @Override
