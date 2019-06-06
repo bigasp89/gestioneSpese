@@ -1,6 +1,7 @@
 package com.example.gestionespese;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,23 +33,10 @@ public class MainActivity extends AppCompatActivity {
     DataBaseHelper myDb;
     EditText importoSpesa;
 
+    private ArrayList<String> nomeCategory = new ArrayList<String>();
+    private ArrayList<Integer> idRisorsa = new ArrayList<Integer>();
     //sorgente d dati gridView
     //inserimento valori in griglia spese e icone
-    String[] nomeCategoriaSpese = {
-            "Caffè",
-            "Casa",
-            "Giochi",
-            "Gelato",
-            "Telefono",
-            "Carta Regalo"};
-
-
-    int[] iconeCategorieSpese = {R.drawable.coffe_cup,
-            R.drawable.home_icon,
-            R.drawable.joypad,
-            R.drawable.ice_cream,
-            R.drawable.smartphone,
-            R.drawable.gift_card};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +73,21 @@ public class MainActivity extends AppCompatActivity {
         TextView importoUscite = (TextView) findViewById(R.id.tv_uscite_value_home_page);
         importoUscite.setText(Integer.toString(totUscite)+"€");
 
+        //GESTIONE CATEGORY HOME PAGE
+        Cursor cursor = myDb.getCategoryFlagged();
+        nomeCategory.clear();
+        idRisorsa.clear();
+        if (cursor.moveToFirst()) {
+            do {
+                nomeCategory.add(cursor.getString(cursor.getColumnIndex("NOME")));
+                idRisorsa.add(cursor.getInt(cursor.getColumnIndex("ID_ICONA")));
+            } while (cursor.moveToNext());
+        }
 
 
         //Gestione Griglia spese
         gridViewSpese = findViewById(R.id.gridViewSpese);
-        GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategoriaSpese,iconeCategorieSpese);
+        GridViewSpeseAdapter gridViewSpeseAdapter = new GridViewSpeseAdapter(getApplicationContext(),nomeCategory,idRisorsa);
         gridViewSpese.setAdapter(gridViewSpeseAdapter);
         gridViewSpese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -106,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //settiamo i valori all'interno del popUp
                 //dobbiamo passare, icona titolo
-                titoloSpesa.setText(nomeCategoriaSpese[i]);
-                iconaCategoria.setImageResource(iconeCategorieSpese[i]);
+                titoloSpesa.setText(nomeCategory.get(i));
+                iconaCategoria.setImageResource(idRisorsa.get(i));
                 mBuilder.setView(myView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();

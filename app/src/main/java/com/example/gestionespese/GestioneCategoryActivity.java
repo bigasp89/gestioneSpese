@@ -25,6 +25,7 @@ public class GestioneCategoryActivity extends AppCompatActivity {
     private ArrayList<String> idCategory = new ArrayList<String>();
     private ArrayList<String> nomeCategory = new ArrayList<String>();
     private ArrayList<String> flagCategory = new ArrayList<String>();
+    private ArrayList<Integer> idRisorsa = new ArrayList<Integer>();
     int[] iconaCestino = {R.drawable.cestino};
 
     @Override
@@ -58,18 +59,20 @@ public class GestioneCategoryActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.listaCategorie);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
         recyclerView.setLayoutManager(linearLayoutManager);
-        Cursor cursor = myDb.getCategoryFromCategorieTable();
+        Cursor cursor = myDb.getAllCategoryFromCategorieTable();
         idCategory.clear();
         nomeCategory.clear();
         flagCategory.clear();
+        idRisorsa.clear();
         if (cursor.moveToFirst()) {
             do {
                 idCategory.add(cursor.getString(cursor.getColumnIndex("ID_CAT")));
                 nomeCategory.add(cursor.getString(cursor.getColumnIndex("NOME")));
                 flagCategory.add(cursor.getString(cursor.getColumnIndex("FLAG_SELEZIONE_RAPIDA")));
+                idRisorsa.add(cursor.getInt(cursor.getColumnIndex("ID_ICONA")));
             } while (cursor.moveToNext());
         }
-        final GestioneCategoryAdapterRV gestioneCategotyAdapterRV = new GestioneCategoryAdapterRV(getApplicationContext(),idCategory, nomeCategory,flagCategory,iconaCestino);
+        final GestioneCategoryAdapterRV gestioneCategotyAdapterRV = new GestioneCategoryAdapterRV(getApplicationContext(),idCategory, nomeCategory,flagCategory,iconaCestino,idRisorsa);
         recyclerView.setAdapter(gestioneCategotyAdapterRV);
         //code to set adapter to populate list
         cursor.close();

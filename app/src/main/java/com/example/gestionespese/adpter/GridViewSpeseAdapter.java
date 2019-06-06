@@ -9,28 +9,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.gestionespeses.R;
 
+import java.util.ArrayList;
+
 public class GridViewSpeseAdapter  extends BaseAdapter {
     Context contex;
-    String[] nomeCategoriaSpesa;
-    int[] iconaCategoriaSpesa;
+    private ArrayList<String> nomeCategory = new ArrayList<String>();
+    private ArrayList<Integer> idRisorsa = new ArrayList<Integer>();
     LayoutInflater inflater;
 
     private static class ViewHolder{
-        TextView nomeCategoria;
-        ImageView iconaCategoria;
+        TextView nomeCategory;
+        ImageView idRisorsa;
     }
 
-    public GridViewSpeseAdapter(Context appContext,String[] nomeCategoriaSpese, int[] iconaCategoriaSpese){
+    public GridViewSpeseAdapter(Context appContext,ArrayList<String> nomeCategory, ArrayList<Integer> idRisorsa){
         this.contex = appContext;
-        this.nomeCategoriaSpesa = nomeCategoriaSpese;
-        this.iconaCategoriaSpesa = iconaCategoriaSpese;
+        this.nomeCategory = nomeCategory;
+        this.idRisorsa = idRisorsa;
         inflater = (LayoutInflater.from(appContext));
 
     }
 
     @Override
     public int getCount() {
-        return nomeCategoriaSpesa.length;
+        return nomeCategory .size();
     }
 
     @Override
@@ -49,14 +51,14 @@ public class GridViewSpeseAdapter  extends BaseAdapter {
         if(convertView ==null){
             convertView = inflater.inflate(R.layout.row_data,null);
             viewHolder = new ViewHolder();
-            viewHolder.nomeCategoria = (TextView)convertView.findViewById(R.id.nomeCategoriaSpese);
-            viewHolder.iconaCategoria = (ImageView)convertView.findViewById(R.id.imagesCategoriaSpese);
+            viewHolder.nomeCategory = (TextView)convertView.findViewById(R.id.nomeCategoriaSpese);
+            viewHolder.idRisorsa = (ImageView)convertView.findViewById(R.id.imagesCategoriaSpese);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
-        viewHolder.nomeCategoria.setText(nomeCategoriaSpesa[position]);
-        viewHolder.iconaCategoria.setImageResource(iconaCategoriaSpesa[position]);
+        viewHolder.nomeCategory.setText(nomeCategory.get(position));
+        viewHolder.idRisorsa.setImageResource(idRisorsa.get(position));
 
         return convertView;
     }

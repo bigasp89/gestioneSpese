@@ -1,6 +1,7 @@
 package com.example.gestionespese.adpter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gestionespese.GestioneEntrateActivity;
+import com.example.gestionespese.GestioneSpeseActivity;
 import com.example.gestionespese.database.DataBaseHelper;
 import com.example.gestionespeses.R;
 import java.util.ArrayList;
@@ -72,61 +75,41 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
         holder.iconaCestino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDb = new DataBaseHelper(context.getApplicationContext());
-                int id = Integer.parseInt(idEntrata.get(position));
-                boolean removeItem = myDb.deleteRawUscite(id);
-                if(removeItem){
-                    //todo fixare bug rimozione
-                    Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();
-                    importo.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position,idEntrata.size());
-//                    notifyItemRemoved(position);
-//                    notifyItemRangeChanged(position,getItemCount());
-                }
-                else{
-                    Toast.makeText(context.getApplicationContext(),"errore",Toast.LENGTH_LONG).show();
-                }
+
+
+                AlertDialog.Builder EditDialogBuilder = new AlertDialog.Builder(view.getRootView().getContext());
+                final View myView = inflater.inflate(R.layout.pop_up_layout_delete,null);
+                final Button btn_remove = (Button) myView.findViewById(R.id.btn_remove);
+                final Button btn_annullaModifica = (Button) myView.findViewById(R.id.btn_annullaRemove);
+                EditDialogBuilder.setView(myView);
+                final AlertDialog dialog = EditDialogBuilder.create();
+                dialog.show();
+                btn_annullaModifica.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+                btn_remove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    myDb = new DataBaseHelper(context.getApplicationContext());
+                    int id = Integer.parseInt(idEntrata.get(position));
+                        boolean removeItem = myDb.deleteRawUscite(id);
+                        if(removeItem){
+                            Toast.makeText(context.getApplicationContext(),"eliminazione avvenuta con successo",Toast.LENGTH_LONG).show();
+                            Intent ieventreport = new Intent(context, GestioneSpeseActivity.class);
+                            context.startActivity(ieventreport);
+                        }
+                        else{
+                            Toast.makeText(context.getApplicationContext(),"ops!!! qualcosa è andato storto",Toast.LENGTH_LONG).show();
+                        }
+                        dialog.cancel();
+                    }
+
+                });
             }
         });
-//        holder.iconaCestino.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                AlertDialog.Builder EditDialogBuilder = new AlertDialog.Builder(view.getRootView().getContext());
-//                final View myView = inflater.inflate(R.layout.pop_up_layout_delete,null);
-//                final Button btn_remove = (Button) myView.findViewById(R.id.btn_remove);
-//                final Button btn_annullaModifica = (Button) myView.findViewById(R.id.btn_annullaRemove);
-//                EditDialogBuilder.setView(myView);
-//                final AlertDialog dialog = EditDialogBuilder.create();
-//                dialog.show();
-//                btn_annullaModifica.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.cancel();
-//                    }
-//                });
-//                btn_remove.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                    myDb = new DataBaseHelper(context.getApplicationContext());
-//                    int id = Integer.parseInt(idEntrata.get(position));
-//                        boolean removeItem = myDb.deleteRawEntrate(id);
-//                        if(removeItem){
-//                            importo.remove(position);
-//                            notifyItemRemoved(position);
-//                            notifyItemRangeChanged(position,getItemCount());
-//                        }
-//                        else{
-//                            Toast.makeText(context.getApplicationContext(),"ops!!! qualcosa è andato storto",Toast.LENGTH_LONG).show();
-//                        }
-//                        dialog.cancel();
-//                    }
-//
-//                });
-//            }
-//        });
 
         //DESCRIZIONE ITEM
         holder.infoIcon.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +118,6 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                 myDb = new DataBaseHelper(context.getApplicationContext());
                 int id = Integer.parseInt(idEntrata.get(position));
                 String descrizione = myDb.getDescrizioneFromId(id);
-
                 AlertDialog.Builder EditDialogBuilder = new AlertDialog.Builder(view.getRootView().getContext());
                 final View myView = inflater.inflate(R.layout.pop_up_layout_description,null);
                 final TextView fullDescription = (TextView) myView.findViewById(R.id.descriptionContenent);

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static android.os.Build.ID;
+import static android.view.View.Y;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "GestioneSpese.db";
@@ -23,9 +24,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static String ID_CAT = "ID_CAT";
     public static String NOME = "NOME";
     public static String FLAG_SELEZIONE_RAPIDA = "FLAG_SELEZIONE_RAPIDA";
+    public static String ID_ICONA = "ID_ICONA";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 10);
+        super(context, DATABASE_NAME, null, 16);
     }
 
     @Override
@@ -34,16 +36,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "NOME_CATEGORIA TEXT,IMPORTO INTEGER,DESCRIZIONE STRING,DATA_ESATTA STRING,ORA_ESATTA STRING)");
 
         db.execSQL(" create TABLE if not exists " + TABLE_NAME_CATEGORIA + " (ID_CAT INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "NOME TEXT,FLAG_SELEZIONE_RAPIDA STRING)");
+                "NOME TEXT,FLAG_SELEZIONE_RAPIDA STRING,ID_ICONA INT)");
 
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Affitto', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Gas', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Giochi', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Varie', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Aereo', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Vacanze', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Regalo', 'Y')");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA) VALUES ('Dildo', 'N')");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Affitto', 'Y',2131165276)");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Caffè', 'Y',2131165270)");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Giochi', 'Y',2131165282)");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Regali', 'Y',2131165273)");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Telefono', 'Y',2131165299)");
+        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Telefninoo', 'N',2131165299)");
+
     }
 
     @Override
@@ -138,9 +139,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     //METODI TABELLA CATEGORIE
 
-    public Cursor getCategoryFromCategorieTable() {
+    public Cursor getAllCategoryFromCategorieTable() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = " select * from " + TABLE_NAME_CATEGORIA ;
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor getCategoryFlagged() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = " select * from " + TABLE_NAME_CATEGORIA + " WHERE " + FLAG_SELEZIONE_RAPIDA + " = 'Y'";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

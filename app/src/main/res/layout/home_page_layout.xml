@@ -180,21 +180,88 @@
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:text="Uscite"
+        android:text="Inserisci Spesa"
         android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/sub_title_lista_categorie_spese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:text="(Selezione Rapida)"
+        android:textSize="12sp"
         android:textStyle="bold|italic" />
 
     <GridView
         android:id="@+id/gridViewSpese"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="357dp"
+        android:layout_height="202dp"
         android:layout_gravity="center"
-        android:layout_marginTop="3dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/gridview_style"
         android:horizontalSpacing="0dp"
         android:numColumns="4"
         android:scrollbars="vertical"
         android:verticalSpacing="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/entrata_img"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/moneyin" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Registra Entrata" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/moneyout" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Inserisci Uscita" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

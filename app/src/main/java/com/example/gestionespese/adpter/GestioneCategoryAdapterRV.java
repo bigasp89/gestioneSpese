@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,17 +24,19 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
     private ArrayList<String> idCategory = new ArrayList<String>();
     private ArrayList<String> nomeCategory = new ArrayList<String>();
     private ArrayList<String> flagCategory = new ArrayList<String>();
+    private ArrayList<Integer> idRisorsa = new ArrayList<Integer>();
     LayoutInflater inflater;
     int[] iconaCestino;
 
 
     public GestioneCategoryAdapterRV(Context context, ArrayList<String> idCategory, ArrayList<String> nomeCategory,
-                                     ArrayList<String> flagCategory,int[] iconaCestino) {
+                                     ArrayList<String> flagCategory,int[] iconaCestino,ArrayList<Integer> idRisorsa) {
         this.context = context;
         this.idCategory = idCategory;
         this.nomeCategory = nomeCategory;
         this.flagCategory = flagCategory;
         this.iconaCestino = iconaCestino;
+        this.idRisorsa = idRisorsa;
         inflater = (LayoutInflater.from(context));
     }
 
@@ -48,7 +51,6 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.idCategory.setText(idCategory.get(position));
         holder.nomeCategory.setText(nomeCategory.get(position));
         holder.flagCategory.setText(flagCategory.get(position));
         if(holder.flagCategory.getText().equals("Y")){
@@ -58,6 +60,20 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
             holder.selectionState.setChecked(false);
         }
         holder.iconaCestino.setImageResource(R.drawable.cestino);
+        holder.idRisorsa.setImageResource(idRisorsa.get(position));
+
+        holder.selectionState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //questo metodo funge
+            //TODO CAMBIARE LO STATO SU DB AL CLICK
+            public void onClick(View view) {
+                if(((CompoundButton) view).isChecked()){
+                    System.out.println("Checked");
+                } else {
+                    System.out.println("Un-Checked");
+                }
+            }
+        });
     }
 
 
@@ -69,18 +85,18 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView idCategory;
         TextView nomeCategory;
         TextView flagCategory;
         ImageView iconaCestino;
+        ImageView idRisorsa;
         public CheckBox selectionState;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            idCategory = (TextView) itemView.findViewById(R.id.tv_id_category);
             nomeCategory = (TextView) itemView.findViewById(R.id.tv_id_nomeCateogry);
             flagCategory = (TextView) itemView.findViewById(R.id.tv_id_flgCategory);
             iconaCestino = (ImageView) itemView.findViewById(R.id.cestinoCategory);
+            idRisorsa = (ImageView) itemView.findViewById(R.id.iconaCategoria);
             selectionState = (CheckBox) itemView.findViewById(R.id.brand_select);
         }
     }
