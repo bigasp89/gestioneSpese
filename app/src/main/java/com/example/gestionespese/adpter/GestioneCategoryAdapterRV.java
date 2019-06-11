@@ -27,6 +27,8 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
     private ArrayList<Integer> idRisorsa = new ArrayList<Integer>();
     LayoutInflater inflater;
     int[] iconaCestino;
+    DataBaseHelper myDb;
+
 
 
     public GestioneCategoryAdapterRV(Context context, ArrayList<String> idCategory, ArrayList<String> nomeCategory,
@@ -67,11 +69,20 @@ public class GestioneCategoryAdapterRV extends RecyclerView.Adapter<GestioneCate
             //questo metodo funge
             //TODO CAMBIARE LO STATO SU DB AL CLICK
             public void onClick(View view) {
+                myDb = new DataBaseHelper(context.getApplicationContext());
+                //id,nome,flag,risorsaImg
+                String idCat = idCategory.get(position);
+                String nomeCat = nomeCategory.get(position);
+                int idImg = idRisorsa.get(position);
+                String flgVal = "";
                 if(((CompoundButton) view).isChecked()){
+                    flgVal = "Y";
                     System.out.println("Checked");
                 } else {
                     System.out.println("Un-Checked");
+                    flgVal = "N";
                 }
+                boolean updateDataFlag = myDb.updateFlagValueCategory(idCat,nomeCat,flgVal,idImg);
             }
         });
     }

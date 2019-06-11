@@ -2,6 +2,7 @@ package com.example.gestionespese;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +82,42 @@ public class GestioneCategoryActivity extends AppCompatActivity {
         cursor.close();
     }
 
+    //todo gestione inserimento nuova categoria
+    public void insertCategory(View view) {
+        Toast.makeText(getApplicationContext(),"inserisci nuova categoria",Toast.LENGTH_LONG).show();
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(GestioneCategoryActivity.this);
+        //infalte layout
+        final View myView = getLayoutInflater().inflate(R.layout.popup_layout_aggiungi_category,null);
+//        final TextView titoloSpesa = (TextView) myView.findViewById(R.id.titoloPopUpInsertCategory);
+        final EditText nomeCategoryInserito = (EditText) myView.findViewById(R.id.nomeCategoryInsert);
+        final Button bt_associa = (Button) myView.findViewById(R.id.btn_associa);
+        final Button bt_conferma = (Button) myView.findViewById(R.id.btn_conferma);
+        final Button bt_annulla = (Button) myView.findViewById(R.id.btn_annulla);
+
+        //settiamo i valori all'interno del popUp
+        //dobbiamo passare, icona titolo
+//        titoloSpesa.setText(nomeCategory.get(i));
+//        iconaCategoria.setImageResource(idRisorsa.get(i));
+        mBuilder.setView(myView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        bt_annulla.setOnClickListener(
+                new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+
+            }
+        });
+        bt_conferma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"conferma",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
     @Override
     public void onBackPressed() {
         Intent goToHomePageActivity = new Intent(this,MainActivity.class);
@@ -95,7 +135,8 @@ public class GestioneCategoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_id_homePage:
-                Toast.makeText(getApplicationContext(),"Home Page",Toast.LENGTH_LONG).show();
+                Intent goToHomePageActivity = new Intent(this,MainActivity.class);
+                startActivity(goToHomePageActivity);
                 break;
             case R.id.menu_id_gestUscite:
                 Intent goToGestioneSpeseActivity = new Intent(this,GestioneSpeseActivity.class);
@@ -115,4 +156,6 @@ public class GestioneCategoryActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -69,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
         final String oraEsattaDb = formatoOraPerDb.format(c.getTime());
 
         //gestione importi
-        int totUscite = myDb.getImportoTotaleSpese();
+        double totUscite = myDb.getImportoTotaleSpese();
+        DecimalFormat dfImport = new DecimalFormat("#.##"); // 2 cifre decimali
         TextView importoUscite = (TextView) findViewById(R.id.tv_uscite_value_home_page);
-        importoUscite.setText(Integer.toString(totUscite)+"€");
+        String TotSpese = dfImport.format(totUscite);
+        importoUscite.setText(TotSpese +"€");
 
         //GESTIONE CATEGORY HOME PAGE
         Cursor cursor = myDb.getCategoryFlagged();
@@ -118,17 +122,21 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Inserisci un Importo",Toast.LENGTH_LONG).show();
                         }
                         else{
-                            final int importoInserito = Integer.parseInt(importo.getText().toString());
+                            final double importoInserito = Double.parseDouble(importo.getText().toString());
                             String descrizioneInsert = descrizione.getText().toString();
                             if(descrizioneInsert.isEmpty()){
                                 descrizioneInsert = "nessuna descrizione presente";
                             }
-                            boolean isInsert =  myDb.insertEntrata(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert,dataEsattaDb,oraEsattaDb);
+                            boolean isInsert =  myDb.insertUscita(titoloSpesa.getText().toString(),importoInserito,descrizioneInsert,dataEsattaDb,oraEsattaDb);
                             if(isInsert = true){
                                 Toast.makeText(getApplicationContext(),"inserimento riuscito",Toast.LENGTH_LONG).show();
-                                int totUscite = myDb.getImportoTotaleSpese();
+                                double totUscite = myDb.getImportoTotaleSpese();
+
+                                //gestione cifre decimali
+                                DecimalFormat df = new DecimalFormat("#.##"); // 2 cifre decimali
+                                String totaleSpeseFormattato = df.format(totUscite);
                                 TextView importoUscite = (TextView) findViewById(R.id.tv_uscite_value_home_page);
-                                importoUscite.setText(Integer.toString(totUscite)+"€");
+                                importoUscite.setText(totaleSpeseFormattato+"€");
                                 dialog.cancel();
                             }
                         }
@@ -146,6 +154,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void insertUscitaButton(View view) {
+        Toast.makeText(getApplicationContext(),"insertUscita",Toast.LENGTH_LONG).show();
+
+    }
+
+    public void inserisciEntrataButton(View view) {
+        Toast.makeText(getApplicationContext(),"InsetisciEntrata",Toast.LENGTH_LONG).show();
+    }
+
+
 
     // Start Gestione Menu e sue voci //
     // Menu icons are inflated just as they were with actionbar
@@ -186,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
 
 }
 

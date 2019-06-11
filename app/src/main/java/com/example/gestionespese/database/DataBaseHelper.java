@@ -10,7 +10,9 @@ import static android.os.Build.ID;
 import static android.view.View.Y;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "GestioneSpese.db";
+    public static final String DATABASE_NAME = "GestisciSpese1.db";
+
+   //TABLE_NAME_USCITE
     public static String TABLE_NAME_USCITE = "uscite_table";
     public static String COLONNA_1 = "ID";
     public static String NOME_CATEGORIA = "NOME_CATEGORIA";
@@ -19,21 +21,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static String DATA_ESATTA = "DATA_ESATTA";
     public static String ORA_ESATTA = "ORA_ESATTA";
 
-
+    //TABLE_NAME_CATEGORIA
     public static String TABLE_NAME_CATEGORIA = "category_table";
     public static String ID_CAT = "ID_CAT";
     public static String NOME = "NOME";
     public static String FLAG_SELEZIONE_RAPIDA = "FLAG_SELEZIONE_RAPIDA";
     public static String ID_ICONA = "ID_ICONA";
 
+
+    //TABLE_NAME_ENTRATE
+    public static String TABLE_NAME_ENTRATE = "tabella_entrate";
+    public static String ID_ENTRATA = "ID";
+    public static String NOME_CATEGORIA_ENTRATA = "NOME_CATEGORIA";
+    public static String IMPORTO_ENTRATA = "IMPORTO";
+    public static String DESCRIZIONE_ENTRATA = "DESCRIZIONE";
+    public static String DATA_ENTRY = "DATA_ENTRY";
+    public static String ORA_ENTRY = "ORA_ENTRY";
+
+
+
+
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 16);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(" create TABLE " + TABLE_NAME_USCITE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "NOME_CATEGORIA TEXT,IMPORTO INTEGER,DESCRIZIONE STRING,DATA_ESATTA STRING,ORA_ESATTA STRING)");
+                "NOME_CATEGORIA TEXT,IMPORTO DOUBLE,DESCRIZIONE STRING,DATA_ESATTA STRING,ORA_ESATTA STRING)");
+
+        db.execSQL(" create TABLE " + TABLE_NAME_ENTRATE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "NOME_CATEGORIA_ENTRATA TEXT,IMPORTO_ENTRATA DOUBLE,DESCRIZIONE_ENTRATA STRING,DATA_ENTRY STRING,ORA_ENTRY STRING)");
 
         db.execSQL(" create TABLE if not exists " + TABLE_NAME_CATEGORIA + " (ID_CAT INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NOME TEXT,FLAG_SELEZIONE_RAPIDA STRING,ID_ICONA INT)");
@@ -50,11 +68,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_USCITE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_ENTRATE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CATEGORIA);
         onCreate(db);
     }
 
-    public boolean insertEntrata(String nomeCategoria, Integer importo, String descrizione, String dataEsatta, String oraEsatta) {
+    public boolean insertUscita(String nomeCategoria, Double importo, String descrizione, String dataEsatta, String oraEsatta) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME_CATEGORIA, nomeCategoria);
@@ -102,7 +121,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateDataValue(String id, int importo, String descrizione) {
+    public boolean updateDataValue(String id, Double importo, String descrizione) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLONNA_1, id);
@@ -113,29 +132,47 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public int getImportoFromId(int id) {
+    public Double getImportoFromId(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String table_name = TABLE_NAME_USCITE;
         int idValue = id;
         String selectQuery = "select * from " + table_name + " WHERE ID= " + idValue;
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst();
-        int importo = cursor.getInt(cursor.getColumnIndex("IMPORTO"));
+        Double importo = cursor.getDouble(cursor.getColumnIndex("IMPORTO"));
         db.close();
         return importo;
     }
 
-    public int getImportoTotaleSpese() {
-        int totale = 0;
+    public double getImportoTotaleSpese() {
+        double totale = 0;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT SUM(" + IMPORTO + ") FROM " + TABLE_NAME_USCITE, null);
         if (cursor.moveToFirst()) {
-            totale = cursor.getInt(0);
+            totale = cursor.getDouble(0);
         }
         while (cursor.moveToNext()) ;
         return totale;
     }
 
+
+    //GESTIONE TABELLA ENTRATE
+
+    public boolean inserisciEntrata(String nomeEntrata, Integer importo, String descrizione, String dataEntry, String oraEntry) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NOME_CATEGORIA_ENTRATA, nomeEntrata);
+        contentValues.put(IMPORTO_ENTRATA, importo);
+        contentValues.put(DESCRIZIONE_ENTRATA, descrizione);
+        contentValues.put(DATA_ENTRY, dataEntry);
+        contentValues.put(ORA_ENTRY, oraEntry);
+        long result = db.insert(TABLE_NAME_USCITE, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     //METODI TABELLA CATEGORIE
 
@@ -152,6 +189,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+
 
     public boolean insertCategoria(String nomeCategoria,String flgSelezioneRapida) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -177,5 +215,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateFlagValueCategory(String id, String nomeCategory, String flagChange, int risorsaImg) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID_CAT, id);
+        contentValues.put(NOME, nomeCategory);
+        contentValues.put(FLAG_SELEZIONE_RAPIDA, flagChange);
+        contentValues.put(ID_ICONA, risorsaImg);
+        db.update(TABLE_NAME_CATEGORIA, contentValues, "ID_CAT = ?", new String[]{id});
+        db.close();
+        return true;
+    }
 
 }

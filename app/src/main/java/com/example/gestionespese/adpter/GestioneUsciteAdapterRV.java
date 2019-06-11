@@ -146,7 +146,7 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                 myDb = new DataBaseHelper(context.getApplicationContext());
                 int id = Integer.parseInt(idEntrata.get(position));
                 String descrizione = myDb.getDescrizioneFromId(id);
-                int importo = myDb.getImportoFromId(id);
+                double importo = myDb.getImportoFromId(id);
                 String importoToString = String.valueOf(importo);
                 titoloCategoriaModify.setText(nomeEntrata.get(position));
                 importoModify.setText(importoToString);
@@ -166,7 +166,7 @@ public class GestioneUsciteAdapterRV extends RecyclerView.Adapter<GestioneUscite
                         if(importoModify.getText().toString().isEmpty()){
                             Toast.makeText(view.getRootView().getContext(),"Inserisci un Importo",Toast.LENGTH_LONG).show();
                         }else{
-                            final int importoInseritoModify = Integer.parseInt(importoModify.getText().toString());
+                            final double importoInseritoModify = Double.parseDouble(importoModify.getText().toString());
                             String descrizioneInsertModify = descrizioneModify.getText().toString();
                             if(descrizioneInsertModify.isEmpty()){
                                 descrizioneInsertModify="nessuna Descrizione presente";
