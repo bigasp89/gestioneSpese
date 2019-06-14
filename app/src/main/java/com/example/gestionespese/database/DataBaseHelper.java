@@ -5,12 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.example.gestionespeses.R;
 
-import static android.os.Build.ID;
-import static android.view.View.Y;
+
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "GestisciSpese1.db";
+    public static final String DATABASE_NAME = "gestionespese.db";
 
    //TABLE_NAME_USCITE
     public static String TABLE_NAME_USCITE = "uscite_table";
@@ -38,11 +38,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static String DATA_ENTRY = "DATA_ENTRY";
     public static String ORA_ENTRY = "ORA_ENTRY";
 
-
-
+    public int affitto = R.drawable.home_icon;
+    public int caffe = R.drawable.coffe_cup;
+    int giochi = R.drawable.joypad;
+    int gifcard = R.drawable.gift_card;
+    int phone = R.drawable.smartphone;
+    int gelato = R.drawable.ice_cream;
+    int varie = R.drawable.imgdefault;
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
@@ -56,13 +61,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(" create TABLE if not exists " + TABLE_NAME_CATEGORIA + " (ID_CAT INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NOME TEXT,FLAG_SELEZIONE_RAPIDA STRING,ID_ICONA INT)");
 
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Affitto', 'Y',2131165276)");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Caffè', 'Y',2131165270)");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Giochi', 'Y',2131165282)");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Regali', 'Y',2131165273)");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Telefono', 'Y',2131165299)");
-        db.execSQL("INSERT INTO " + TABLE_NAME_CATEGORIA+ "(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES ('Telefninoo', 'N',2131165299)");
 
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Affitto", "Y",affitto});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Caffè", "Y",caffe});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Giochi", "Y",giochi});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Regali", "Y",gifcard});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Telefono", "Y",phone});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Gelato", "N",gelato});
+        db.execSQL("INSERT INTO  category_table(NOME, FLAG_SELEZIONE_RAPIDA,ID_ICONA) VALUES (?,?,?)", new Object[]{"Varie", "N",varie});
     }
 
     @Override
@@ -191,11 +197,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertCategoria(String nomeCategoria,String flgSelezioneRapida) {
+    public boolean insertCategoria(String nomeCategoria,String flgSelezioneRapida, int risorsaImg) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME, nomeCategoria);
         contentValues.put(FLAG_SELEZIONE_RAPIDA, flgSelezioneRapida);
+        contentValues.put(ID_ICONA, risorsaImg);
         long result = db.insert(TABLE_NAME_CATEGORIA, null, contentValues);
         if (result == -1) {
             return false;

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Inserisci un categoria Spese"
+        android:text="AGGIUNGI UNA CATEGORIA PERSONALIZZATA"
         android:textSize="18sp"
         android:textStyle="bold|italic"/>
 
@@ -27,16 +27,36 @@
         android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:textStyle="bold|italic"/>
+    <LinearLayout
+        android:id="@+id/imgCategorylayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
 
     <Button
         android:id="@+id/btn_associa"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:background="@android:color/holo_blue_bright"
-        android:text="+ Associa"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="Cambia"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"/>
+
+        <ImageView
+        android:id="@+id/imgPopupCateogry"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:src="@drawable/imgdefault"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:scaleType="fitCenter"
+        android:gravity="center"
+        android:background="@drawable/style_icon_round"
+        />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/NomeCategory"
@@ -52,7 +72,7 @@
 
     <EditText
         android:id="@+id/nomeCategoryInsert"
-        android:layout_width="193dp"
+        android:layout_width="200dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"

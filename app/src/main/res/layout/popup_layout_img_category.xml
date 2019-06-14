@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_nome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/imgCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Associa un'immagine alla tua categoria"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"/>
+
+    <GridView
+        android:id="@+id/gridViewImgCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/gridview_style"
+        android:horizontalSpacing="0dp"
+        android:numColumns="4"
+        android:scrollbars="vertical"
+        android:verticalSpacing="0dp"
+        android:layout_weight="1"/>
+
+    <!--Bottoni INSERISCI e ANNULLA -->
+
+</LinearLayout>
