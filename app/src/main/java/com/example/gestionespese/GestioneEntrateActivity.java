@@ -1,28 +1,30 @@
 package com.example.gestionespese;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gestionespese.adpter.GestioneEntrateAdapterRV;
+import com.example.gestionespese.adpter.GestioneEntrateAdapter;
+import com.example.gestionespese.object.Entrate;
 import com.example.gestionespeses.R;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class GestioneEntrateActivity extends AppCompatActivity {
 
-//    ListView listViewUscite;
-    RecyclerView recyclerView;
-    //sorgente di dati
+    //todo inserire controllo sulla descrizione che deve essere massimo di 70 caratteri
+    //todo inserire controllo sul nome che deve essere al massimo di 22 caratteri
+    ListView listViewEntrate;
 
-    String[] nomeCateogriaSpesa = {"caffe","gelato"};
-    int [] iconCategoriaSpese = {R.drawable.coffe_cup,R.drawable.ice_cream};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,20 +42,17 @@ public class GestioneEntrateActivity extends AppCompatActivity {
         //End gestione Toolbar//
 
         //gestione lista Uscite
-//        listViewUscite = (ListView) findViewById(R.id.listUscite);
-        recyclerView = (RecyclerView) findViewById(R.id.rvUscite);
+        listViewEntrate = (ListView)findViewById(R.id.listviewEntrate);
+        List<Entrate> listaEntrate = new LinkedList<Entrate>();
+        int img = R.id.entrata_img;
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
-        recyclerView.setLayoutManager(linearLayoutManager);
+        listaEntrate.add(new Entrate("Stipendio Gennaio 2018","ho preso poco","14/01/1989","10:14",1050.00));
+        listaEntrate.add(new Entrate("Prostituzione","proviamo questa descrizione lunga lunga lunghissima la proviamo ancora la","15/01/1989","10:14",1540.0));
+        listaEntrate.add(new Entrate("Stipendio Novembre 2019","Nessuna Descrizione Presente","14/01/1989","10:14",900));
 
-        GestioneEntrateAdapterRV gestioneEntrateAdapterRV = new GestioneEntrateAdapterRV(getApplicationContext(),nomeCateogriaSpesa,iconCategoriaSpese);
-        //collegare arrayAdapter alla listview
-        recyclerView.setAdapter(gestioneEntrateAdapterRV);
-
-
+        GestioneEntrateAdapter adapter = new GestioneEntrateAdapter(this, R.layout.item_entrate, listaEntrate);
+        listViewEntrate.setAdapter(adapter);
     }
-
-
 
     @Override
     public void onBackPressed() {
